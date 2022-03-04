@@ -4,10 +4,10 @@
 
     function isLoggedIn(){
         if(isset($_SESSION['user_id'])){
-          return true;
+            return true;
         } else {
-          return false;
+            return false;
         }
-      }
+    }
 
 ?>
