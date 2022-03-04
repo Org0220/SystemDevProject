@@ -2,9 +2,9 @@
   // App Root
   define('APPROOT', dirname(dirname(__FILE__)));
   // URL Root
-  define('URLROOT', 'http://localhost/MVC');
+  define('URLROOT', 'http://localhost/SystemDevProject');
   // Site Name
-  define('SITENAME', '420-411-VA: PHP MVC Application');
+  define('SITENAME', 'Quedescils');
 
   // Database Params
   define('DB_HOST', 'localhost');
