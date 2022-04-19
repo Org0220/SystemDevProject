@@ -3,7 +3,9 @@ class Login extends Controller
 {
     public function __construct()
     {
-        $this->loginModel = $this->model('loginModel');
+        $this->adminEmail = "Admin";
+         $this->adminPassword = "Password";
+        $this->UserModel = $this->model('UserModel');
     }
 
     public function index()
@@ -12,70 +14,93 @@ class Login extends Controller
             $this->view('Login/index');
         }
         else{
-            $user = $this->loginModel->getUser($_POST['username']);
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            if($password == $this->adminPassword &&  $email == $this->adminEmail)
+            { 
+                $this->view('Admin/index');
+                $_SESSION['admin'] = "in";
+            } else {
+                $user = $this->UserModel->getUser($_POST['email']);
             
-            if($user != null){
-                $hashed_pass = $user->pass_hash;
-                $password = $_POST['password'];
-                if(password_verify($password,$hashed_pass)){
-                    //echo '<meta http-equiv="Refresh" content="2; url=/MVC/">';
-                    $this->createSession($user);
-                    $data = [
-                        'msg' => "Welcome, $user->username!",
-                    ];
-                    $this->view('Home/home',$data);
+                if($user != null){
+                    $hashed_pass = $user->pass_hash;
+                    if(password_verify($password,$hashed_pass)){
+
+                        $this->createSession($user);
+                        $data = [
+                            'msg' => "Welcome, $user->email!",
+                        ];
+                        $this->view('Home/home',$data);
+                    }
+                    else{
+                        $data = [
+                            'msg' => "Password incorrect! for $user->email",
+                        ];
+                        $this->view('Login/index',$data);
+                    }
                 }
                 else{
                     $data = [
-                        'msg' => "Password incorrect! for $user->username",
+                        'msg' => "User: ". $_POST['email'] ." does not exists",
                     ];
                     $this->view('Login/index',$data);
                 }
-            }
-            else{
-                $data = [
-                    'msg' => "User: ". $_POST['username'] ." does not exists",
-                ];
-                $this->view('Login/index',$data);
             }
         }
     }
 
     public function create()
     {
-        if(!isset($_POST['signup'])){
+        if(!isset($_POST['register'])){
             $this->view('Login/create');
         }
         else{
-            $user = $this->loginModel->getUser($_POST['username']);
+            $user = $this->UserModel->getUser($_POST['email']);
             if($user == null){
                 $data = [
-                    'username' => trim($_POST['username']),
+                    'email' => trim($_POST['email']),
+                    'pass' => $_POST['password'],
+                    'pass_verify' => $_POST['verify_password'],
                     'pass_hash' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+                    'name' => $_POST['name'];
+                    'phone_number' => $_POST['phone_numbmer'];
+                    'email_error' => '',
+                    'password_error' => '',
+                    'password_match_error' => '',
+                    'password_len_error' => '',
+                    'msg' => '',
                 ];
-                if($this->loginModel->createUser($data)){
-                        echo 'Please wait creating the account for '.trim($_POST['username']);
-                        echo '<meta http-equiv="Refresh" content="2; url=/MVC/Login/">';
-                }
+                if($this->validateData($data)){
+                    if($this->UserModel->create($data)){
+                        echo '
+                        <div class="text-center">
+                        <div class="spinner-border" role="status">
+                          <span class="sr-only">Please wait creating the account for '.trim($_POST["email"]).'</span>
+                        </div>
+                      </div>';
+                        echo '<meta http-equiv="Refresh" content="2; url=/SystemDevProejct/Login/">';
+                    }
+                } 
             }
             else{
                 $data = [
-                    'msg' => "User: ". $_POST['username'] ." already exists",
+                    'msg' => "User: ". $_POST['email'] ." already exists",
                 ];
                 $this->view('Login/create',$data);
             }
-            
         }
     }
 
     public function createSession($user){
-        $_SESSION['user_id'] = $user->id;
-        $_SESSION['user_username'] = $user->username;
+        $_SESSION['client_id'] = $user->id;
+        $_SESSION['client_name'] = $user->name;
     }
 
     public function logout(){
-        unset($_SESSION['user_id']);
+        unset($_SESSION['client_id']);
+        unset($_SESSION['client_name']);
         session_destroy();
-        echo '<meta http-equiv="Refresh" content="1; url=/MVC/Login/">';
+        echo '<meta http-equiv="Refresh" content="1; url=/SystenDevProject/Login/">';
     }
 }
