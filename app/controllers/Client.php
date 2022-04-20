@@ -1,6 +1,6 @@
 <?php
 
-    class User extends Controller{
+    class Client extends Controller{
         public function __construct(){
             $this->userModel = $this->model('userModel');
             if(!isLoggedIn()){
@@ -9,7 +9,7 @@
         }
 
         public function index(){
-            $this->view('User/index');
+            $this->view('Client/index');
         }
 
         public function getUsers(){
@@ -17,12 +17,12 @@
             $data = [
                 "users" => $users
             ];
-            $this->view('User/getUsers',$data);
+            $this->view('Client/getUsers',$data);
         }
 
         public function createUser(){
             if(!isset($_POST['register'])){
-                $this->view('User/createUser');
+                $this->view('Client/createUser');
             }
             else{
                 $filename= $this->imageUpload();
@@ -35,8 +35,8 @@
                
                 if($this->userModel->createUser($data)){
                     echo 'Please wait we are creating the user for you!';
-                    header('Location: /MVC/User/getUsers');
-                    //echo '<meta http-equiv="Refresh" content="2; url=/MVC/User/getUsers">';
+                    header('Location: /MVC/client/getUsers');
+                    //echo '<meta http-equiv="Refresh" content="2; url=/MVC/client/getUsers">';
                 }
 
             }
@@ -75,14 +75,14 @@
             $user = $this->userModel->getUser($user_id);
 
            
-                $this->view('User/details',$user);
+                $this->view('Client/details',$user);
             
         }
 
         public function update($user_id){
             $user = $this->userModel->getUser($user_id);
             if(!isset($_POST['update'])){
-                $this->view('User/updateUser',$,);
+                $this->view('Client/updateUser',$,);
             }
             else{
                 $filename= $this->imageUpload();
@@ -95,8 +95,8 @@
                 ];
                 if($this->userModel->updateUser($data)){
                     echo 'Please wait we are upating the user for you!';
-                    //header('Location: /MVC/User/getUsers');
-                    echo '<meta http-equiv="Refresh" content="2; url=/MVC/User/getUsers">';
+                    //header('Location: /MVC/client/getUsers');
+                    echo '<meta http-equiv="Refresh" content="2; url=/MVC/client/getUsers">';
                 }
                 
             }
@@ -108,8 +108,8 @@
             ];
             if($this->userModel->delete($data)){
                 echo 'Please wait we are deleting the user for you!';
-                //header('Location: /MVC/User/getUsers');
-                echo '<meta http-equiv="Refresh" content=".2; url=/MVC/User/getUsers">';
+                //header('Location: /MVC/client/getUsers');
+                echo '<meta http-equiv="Refresh" content=".2; url=/MVC/client/getUsers">';
             }
 
         }
