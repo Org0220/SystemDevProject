@@ -10,4 +10,6 @@
         }
     }
 
-?>
+    function is_admin_logged_in() {
+        return true;
+    }

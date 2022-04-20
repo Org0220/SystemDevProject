@@ -33,8 +33,14 @@
             if(isset($url[1])){
                 //check to see if such method exists in the conroller 
                 if(method_exists($this->currentController, $url[1])){
-                    $this->currentMethod = $url[1];
-                    unset($url[1]);
+                    // check if method is public or not
+                    // for use in creating private methods in controller that cannot be
+                    // accessed by users
+                    $reflection = new ReflectionMethod($this->currentController, $url[1]);
+                    if ($reflection->isPublic()) {
+                        $this->currentMethod = $url[1];
+                        unset($url[1]);
+                    }
                 }
             }
 
