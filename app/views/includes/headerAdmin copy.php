@@ -1,47 +1,101 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title><?php echo SITENAME; ?></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <style>
+        div > input, div > label, div > textarea {
+            font: normal normal normal 16px/20px Lucida Fax;
+        }
+
+        
+    </style>
+    <title>
+        Quedescils
+    </title>
 </head>
 
 <body>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <header style=" position: sticky">
+        <div class="color-bar" style="
+        width: 100%;
+        height:3%;
+        background: transparent linear-gradient(90deg, #A7C7E7 0%, #FBFFE2 100%) 0% 0% no-repeat padding-box;
+        border: 1px solid #707070;
+        opacity: 1;">
+        </div>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white" style="border-bottom: 1px solid black;">
+            <li class="navbar-brand">
+                <a class="nav-link" href="AdminHome.html"
+                    style="font: normal normal normal 25px/25px Lucida Fax; color: black">Que Des Cils</a>
+            </li>
+        
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <!-- <i class="fas fa-bars"></i> -->
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/MVC/Calender">Calender</a>
+                        <a class="nav-link" href="AdminAppointments.html"
+                            style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Appointments</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="/MVC/Inventory">Inventory</a>
+                        <a class="nav-link" href="AdminServices.html"
+                            style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Services</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="/MVC/Gallery">Gallery</a>
+                        <a class="nav-link" href="AdminProducts.html"
+                            style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Products</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="/MVC/News">News</a>
+                        <a class="nav-link" href="AdminNewsletter.html"
+                            style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Newsletter</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="AdminGallery.html"
+                            style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Gallery</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="Availabilities.html"
+                            style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Availabilities</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="DatabasePreview.html"
+                            style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Database</a>
                     </li>
                 </ul>
+				
                 <ul class="nav navbar-nav navbar-right">
-                    <?php
-                    if (isLoggedIn()) {
-                    echo '<li class="nav-item"><a class="nav-link" href="/MVC/Login/logout"><i class="fa-solid fa-sign-out"></i> Logout  '. $_SESSION['user_username'].'</a></li>';
-                    } 
-                    else {
-                    echo '<li class="nav-item"><a class="nav-link" href="/MVC/Login/Create"><i class="fa-solid fa-user-plus"></i> Sign Up</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/MVC/Login/"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>';
-                    }
-                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"
+                            style="float: right; text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Logout</a>
+                    </li>
                 </ul>
             </div>
         </nav>
-    </div>
+
+    </header>

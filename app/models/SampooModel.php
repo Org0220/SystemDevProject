@@ -1,34 +1,60 @@
 <?php
 
-    class SampooModel{
+class SampooModel{
+        
+    public function getShampoos(){
+        $this->db->query("SELECT * FROM shampoo");
+        return $this->db->getResultSet();
+    }
+
+    public function getShampoo($id){
+        $this->db->query("SELECT * FROM shampoo WHERE id = :id");
+        $this->db->bind(':id',$id);
+        return $this->db->getSingle();
+    }
+
+    public function create($data){
+        $this->db->query("INSERT INTO shampoo (name, price, description, imgURL) values (:name, :price, :description, :imgURL)");
+        $this->db->bind(':name', $data['name']);
+        $this->db->bind(':price', $data['price']);
+        $this->db->bind(':description',$data['description']);
+        $this->db->bind(':imgURL',$data['imgURL']);
+
+        if($this->db->execute()){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    public function update($data){
+        $this->db->query("UPDATE shampoo SET name=:name, price=:price,  description=:description, imgURL=:imgURL WHERE id=:id");
+        $this->db->bind(':name', $data['name']);
+        $this->db->bind(':price', $data['price']);
+        $this->db->bind(':description',$data['description']);
+        $this->db->bind(':imgURL',$data['imgURL']);
+        $this->db->bind(':id',$data['id']);
+        if($this->db->execute()){
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+    }
+    public function delete($id){
+        $this->db->query("DELETE FROM shampoo WHERE id=:id");
+        $this->db->bind('id', $id);
+
+        if($this->db->execute()){
+            return true;
+        }
+        else{
             
-        public function __construct(){
-            $this->db = new Model;
-        }
-        public function get(){
-            $this->db->query("SELECT * FROM users");
-            return $this->db->getResultSet();
-        }
-
-        public function get($user_id){
-            $this->db->query("SELECT * FROM users WHERE ID = :user_id");
-            $this->db->bind(':user_id',$user_id);
-            return $this->db->getSingle();
-        }
-
-        public function create($data){
-            
-
-        }
-
-        public function update($data){
-            
-            
-        }
-
-        public function delete($data){
-
         }
     }
+}
 
 ?>
