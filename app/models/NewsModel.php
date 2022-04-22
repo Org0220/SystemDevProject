@@ -1,6 +1,11 @@
 <?php
 class NewsModel extends Model
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function get()
     {
         $this->query('SELECT * FROM news ORDER BY date DESC');
