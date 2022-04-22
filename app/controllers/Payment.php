@@ -18,7 +18,7 @@ class Payment extends Controller
                     'price_data' => [
                         'currency' => 'cad',
                         'product_data' => [
-                            'name' => 'INSERT_SERVICE_NAME_HERE'
+                            'name' => '[INSERT SERVICE NAME HERE]'
                         ],
                         'unit_amount' => $data['price'],
                     ],

@@ -89,13 +89,13 @@ class Showcase extends Controller
     {
         $data = ['error' => []];
         $data['title'] = isset($raw_data['title']) ? trim($raw_data['title']) : '';
-        $data['image_url'] = isset($raw_data['image_url']) ? trim($raw_data['image_url']) : '';
+        $data['image_url'] = image_upload();
 
         if (!$data['title']) {
             $data['error'][] = 'Title must not be empty!';
         }
         if (!$data['image_url']) {
-            $data['error'][] = 'Image URL must not be empty!';
+            $data['error'][] = 'Image uploaded must be of type jpeg, gif, or png';
         }
 
         return $data;
