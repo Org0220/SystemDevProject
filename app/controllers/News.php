@@ -26,19 +26,19 @@ class News extends Controller
         if (!is_admin_logged_in()) {
             header('Location: ' . URLROOT);
         } else if (!isset($_POST['Create News'])) {
-            header('Location: ' . URLROOT . '/news/admin_news');
+            $this->view('Admin/addNews');
         } else {
             $data = $this->validate_news($_POST);
             if (!empty($data['error'])) {
-                $this->read_news('Admin/News', $data);
+                $this->read_news('Admin/addNews', $data);
             } else {
                 $isSucc = $this->news_model->create($data);
 
-                if ($isSucc) {
-                    $this->read_news('Admin/News', ['msg' => 'News successfully created!']);
-                } else {
-                    $this->read_news('Admin/News', ['error' => ['Error creating news!']]);
-                }
+                $this->view_selector(
+                    $isSucc,
+                    'News successfully created!',
+                    'Error creating news!'
+                );
             }
         }
     }
@@ -48,19 +48,19 @@ class News extends Controller
         if (!is_admin_logged_in()) {
             header('Location: ' . URLROOT);
         } else if (!isset($_POST['Update News'])) {
-            // Update News View
+            $this->view('Admin/editNews');
         } else {
             $data = $this->validate_news($_POST);
             if (!empty($data['error'])) {
-                // Update News View with Validation Error
+                $this->view('Admin/editNews', $data);
             } else {
                 $data['id'] = $news_id; // maybe check if news_id is a number?
                 $isSucc = $this->news_model->update($data);
-                if ($isSucc) {
-                    // Update News View with Success
-                } else {
-                    // Update News View with Update Error
-                }
+                $this->view_selector(
+                    $isSucc,
+                    'News ' . $news_id . ' successfully edited!',
+                    'Error updating news ' . $news_id
+                );
             }
         }
     }
@@ -72,11 +72,11 @@ class News extends Controller
         } else {
             $data = ['id' => $news_id]; // maybe check if news_id is a number?
             $isSucc = $this->news_model->delete($data);
-            if ($isSucc) {
-                // Maybe go back to the Admin News View
-            } else {
-                // Maybe go back to admin news view but with Delete Error
-            }
+            $this->view_selector(
+                $isSucc,
+                'News ' . $news_id . ' successfully deleted!',
+                'Error deleting news ' . $news_id
+            );
         }
     }
 
@@ -100,5 +100,12 @@ class News extends Controller
         }
 
         return $data;
+    }
+
+    private function view_selector($isSucc, $msg, $error)
+    {
+        $prop = $isSucc ? 'msg' : 'error';
+        $message = $isSucc ? $msg : $error;
+        $this->view('Admin/News', [$prop => $message]);
     }
 }
