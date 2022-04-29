@@ -27,11 +27,11 @@
                 <div class="mb-5">
                     <div class="mb-4">
                         <label for="newsletterTitle">Title</label>
-                        <input id="newsletterTitle" class="form-control" type="text" aria-label="titleLabel">
+                        <input id="newsletterTitle" name = "title" class="form-control" type="text" aria-label="titleLabel">
                     </div>
                     <div class="mb-4">  
                         <label for="newsletterDescription" class="form-label">Content</label>
-                        <textarea id="newsletterDescription" class="form-control" rows="4"></textarea>
+                        <textarea id="newsletterDescription" name = "description" class="form-control" rows="4"></textarea>
                     </div>
                 </div>
                 
@@ -44,7 +44,7 @@
                         border: 1px solid #707070;
                         color: black;
                     ">Cancel</a>
-                    <button type="submit" name="updateNewsletter" class="btn btn-primary" style="
+                    <button type="submit" name="Update News" class="btn btn-primary" style="
                         float: right;
                         width: 150px;
                         height: 40px;

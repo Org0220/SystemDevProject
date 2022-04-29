@@ -1,7 +1,10 @@
 <?php
 
-class SampooModel{
-        
+class ShampooModel {
+
+    public function __construct(){
+            $this->db = new Model;
+        }
     public function getShampoos(){
         $this->db->query("SELECT * FROM shampoo");
         return $this->db->getResultSet();

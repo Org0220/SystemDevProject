@@ -28,19 +28,19 @@
                 <div class="mb-5">
                     <div class="mb-4">
                         <label for="serviceTitle">Service</label>
-                        <input id="serviceTitle" class="form-control" type="text" aria-label="titleLabel">
+                        <input id="serviceTitle" name = "title" class="form-control" type="text" aria-label="titleLabel">
                     </div>
                     <div class="mb-4">  
                         <label for="serviceDescription" class="form-label">Description</label>
-                        <textarea id="serviceDescription" class="form-control" rows="5"></textarea>
+                        <textarea id="serviceDescription" name = "description" class="form-control" rows="5"></textarea>
                     </div>
                     <div class="mb-4">
                         <label for="servicePrice">Price</label>
-                        <input id="servicePrice" class="form-control" type="number" step="0.01" aria-label="priceLabel">
+                        <input id="servicePrice" name = "price"class="form-control" type="number" step="0.01" aria-label="priceLabel">
                     </div>
                     <div>
                         <label for="servicePicture">Picture</label>
-                        <input id="servicePicture" class="form-control mb-4" type="file" >
+                        <input id="servicePicture" name = "picture" class="form-control mb-4" type="file" >
                     </div>
                 </div>
                 
@@ -53,7 +53,7 @@
                         border: 1px solid #707070;
                         color: black;
                     ">Cancel</a>
-                    <button type="submit" name="addService" class="btn btn-primary" style="
+                    <button type="submit" name="Create Service" class="btn btn-primary" style="
                         float: right;
                         width: 150px;
                         height: 40px;

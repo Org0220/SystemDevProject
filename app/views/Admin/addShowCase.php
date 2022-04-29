@@ -40,11 +40,11 @@
                 <div class="mb-5">
                     <div class="mb-4">
                         <label for="showcasePicture">Picture</label>
-                        <input onchange="showcasePicturePreview();" id="showcasePicture" class="form-control mb-4" type="file" >
+                        <input onchange="showcasePicturePreview();" id="showcasePicture" name = "picture" class="form-control mb-4" type="file" >
                     </div>
                     <div>
                         <label for="showcaseTitle">Title</label>
-                        <input id="showcaseTitle" class="form-control" type="text" placeholder="Title" aria-label="titleLabel">
+                        <input id="showcaseTitle" name = "title" class="form-control" type="text" placeholder="Title" aria-label="titleLabel">
                     </div>
                 </div>
                 
@@ -70,7 +70,7 @@
                         border: 1px solid #707070;
                         color: black;
                     ">Cancel</a>
-                    <button type="submit" name="addShowcase" class="btn btn-primary" style="
+                    <button type="submit" name="Create Showcase" class="btn btn-primary" style="
                         float: right;
                         width: 150px;
                         height: 40px;

@@ -53,7 +53,7 @@ class Login extends Controller
     public function create()
     {
         if(!isset($_POST['register'])){
-            $this->view('Login/create');
+            $this->view('Login/Register');
         }
         else{
             $user = $this->UserModel->getUser($_POST['email']);
@@ -87,7 +87,7 @@ class Login extends Controller
                 $data = [
                     'msg' => "User: ". $_POST['email'] ." already exists",
                 ];
-                $this->view('Login/create',$data);
+                $this->view('Login/Register',$data);
             }
         }
     }

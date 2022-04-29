@@ -101,7 +101,7 @@
             $data['price'] = isset($raw_data['price']) && is_numeric(trim($raw_data['price'])) ? trim($raw_data['price']) : '';
             $data['duration'] = isset($raw_data['duration']) && is_numeric(trim($raw_data['duration'])) ? trim($raw_data['duration']) : '';
             $data['description'] = isset($raw_data['description']) ? $raw_data['description'] : '';
-            $data['imgURL'] = isset($raw_data['imgURL']) ? trim($raw_data['imgURL']) : '';
+            $data['imgURL'] = image_upload();
     
             if (!$data['name']) {
                 $data['error'][] = 'Name must not be empty!';

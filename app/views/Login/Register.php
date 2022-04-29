@@ -22,7 +22,7 @@
     </title>
 </head>
 
-<body background="Wallpaper.png" style= "background-repeat: no-repeat; background-size: cover;">
+<body background="<?php echo URLROOT.'/public/img/'?>Wallpaper.png" style= "background-repeat: no-repeat; background-size: cover;">
 
     <br><br><br><br>
     <!-- Register title -->
@@ -47,6 +47,11 @@
 
         <div class="d-flex justify-content-center">
             <button type="register" class="btn btn-primary" style="height: 50px; width: 50%; border: none; outline: none; border-radius: 60px; font-weight: 600; background: #EFE5FF; color:#CFB0D5;">Register</button>
+        </div><br><br>
+        <div class="d-flex justify-content-center">
+            <div class="col-sm-6">
+                <h6 style="color:#94749b;">Already registered? <a href="/SystemDevProject/" style="color:#94749b"><b> Login!</b></a></h6>
+            </div>
         </div>
     </form>
 </section>

@@ -25,23 +25,23 @@
                 <div class="mb-5">
                     <div class="mb-4">
                         <label for="productTitle">Title</label>
-                        <input id="productTitle" class="form-control" type="text" placeholder="Title" aria-label="titleLabel">
+                        <input id="productTitle" name = "title" class="form-control" type="text" placeholder="Title" aria-label="titleLabel">
                     </div>
                     <div class="mb-4">  
                         <label for="productDescription" class="form-label">Description</label>
-                        <textarea id="productDescription" class="form-control" rows="5" placeholder="Description"></textarea>
+                        <textarea id="productDescription" name = "description" class="form-control" rows="5" placeholder="Description"></textarea>
                     </div>
                     <div class="mb-4">
                         <label for="productQuantity">Quantity</label>
-                        <input id="productQuantity" class="form-control" type="number" value="1" aria-label="quantityLabel">
+                        <input id="productQuantity" name = "quantity" class="form-control" type="number" value="1" aria-label="quantityLabel">
                     </div>
                     <div class="mb-4">
                         <label for="productPrice">Price</label>
-                        <input id="productPrice" class="form-control" type="number" step="0.01" placeholder="00.00" aria-label="priceLabel">
+                        <input id="productPrice" name = "price"class="form-control" type="number" step="0.01" placeholder="00.00" aria-label="priceLabel">
                     </div>
                     <div>
                         <label for="productPicture">Picture</label>
-                        <input id="productPicture" class="form-control mb-4" type="file" >
+                        <input id="productPicture" name = "picture" class="form-control mb-4" type="file" >
                     </div>
                 </div>
                 

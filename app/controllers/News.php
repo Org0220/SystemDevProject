@@ -95,7 +95,7 @@ class News extends Controller
         if (!$data['title']) {
             $data['error'][] = 'Title must not be empty!';
         }
-        if (!$data['content']) {
+        if (!$data['description']) {
             $data['error'][] = 'Content must not be empty!';
         }
 

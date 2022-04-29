@@ -100,7 +100,7 @@
             $data['name'] = isset($raw_data['name']) ? trim($raw_data['name']) : '';
             $data['price'] = isset($raw_data['price']) ? trim($raw_data['price']) : '';
             $data['description'] = isset($raw_data['description']) ? trim($raw_data['description']) : '';
-            $data['image_url'] = isset($raw_data['image_url']) ? $raw_data['image_url'] : '';
+            $data['image_url'] = image_upload();
 
             if (!$data['name']) {
                 $data['error'][] = 'Name must not be empty!';
