@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    <form style="font-family: 'Open Sans', sans-serif;">        
+    <form method ='post' style="font-family: 'Open Sans', sans-serif;">        
         <div class="d-flex justify-content-center">
             <div class="col-sm-8"><br>
                 <input type="email" name = "email" class="form-control" id="inputEmail" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="Email"><br>

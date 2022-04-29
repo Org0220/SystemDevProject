@@ -17,10 +17,9 @@ class ShampooModel {
     }
 
     public function create($data){
-        $this->db->query("INSERT INTO shampoo (name, price, description, imgURL) values (:name, :price, :description, :imgURL)");
+        $this->db->query("INSERT INTO shampoo (name, price, imgURL) values (:name, :price, :imgURL)");
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':price', $data['price']);
-        $this->db->bind(':description',$data['description']);
         $this->db->bind(':imgURL',$data['imgURL']);
 
         if($this->db->execute()){
@@ -33,10 +32,9 @@ class ShampooModel {
     }
 
     public function update($data){
-        $this->db->query("UPDATE shampoo SET name=:name, price=:price,  description=:description, imgURL=:imgURL WHERE id=:id");
+        $this->db->query("UPDATE shampoo SET name=:name, price=:price, imgURL=:imgURL WHERE id=:id");
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':price', $data['price']);
-        $this->db->bind(':description',$data['description']);
         $this->db->bind(':imgURL',$data['imgURL']);
         $this->db->bind(':id',$data['id']);
         if($this->db->execute()){

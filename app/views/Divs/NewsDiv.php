@@ -1,4 +1,4 @@
-<!-- div representing service card -->
+<!-- div representing news card -->
 <div class="card" style="
      margin-top:50px;
      background: #FFFFFF 0% 0% no-repeat padding-box;

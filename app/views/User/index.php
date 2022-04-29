@@ -17,7 +17,7 @@
     <div class="container" style="width:100%; height:auto;">
 
         <div class="img" style="height: 50%; margin-top: 100px;">
-            <img src="HomePage.png" style="position: center; width:100%; height: 100%;">
+            <img src="<?php echo URLROOT.'/public/img/';?>HomePage.png" style="position: center; width:100%; height: 100%;">
         </div>
 
         <div class="about" style="margin-top: 100px; margin-bottom: 100px;">

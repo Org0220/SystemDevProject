@@ -64,7 +64,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/SystemDevProject/Shampoo/admin_shampoos"
+                        <a class="nav-link" href="/SystemDevProject/Shampoos/admin_shampoos"
                             style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Products</a>
                     </li>
 
@@ -84,14 +84,14 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="SystemDevProejct/Admin/Database"
+                        <a class="nav-link" href="/SystemDevProejct/Admin/Database"
                             style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Database</a>
                     </li>
                 </ul>
 				
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"
+                        <a class="nav-link" href="/SystemDevProject/Login/adminLogout"
                             style="float: right; text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Logout</a>
                     </li>
                 </ul>

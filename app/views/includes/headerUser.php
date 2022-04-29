@@ -38,10 +38,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/SystemDevProject/Home" style="font: normal normal normal 25px/25px Lucida Fax;">Que Des Cils</a>
+                        <a class="nav-link" href="/SystemDevProject/Home/" style="font: normal normal normal 25px/25px Lucida Fax;">Que Des Cils</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/SystemDevProject/Home" style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Home</a>
+                        <a class="nav-link" href="/SystemDevProject/Home/" style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Home</a>
                     </li>
 
                     <li class="nav-item">
@@ -67,9 +67,18 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="float: right; text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Login</a>
-                    </li>
+                    <?php
+                    if(isLoggedIn()) {
+                        echo '<li class="nav-item">
+                        <a class="nav-link" href="/SystemDevProject/Login/logout" style="float: right; text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Logout</a>
+                    </li>';
+                        }
+                    else  {
+                    echo '<li class="nav-item">
+                        <a class="nav-link" href="/SystemDevProject/Login/" style="float: right; text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Login</a>
+                    </li>';
+                    }
+                    ?>
                 </ul>
             </div>
         </nav>

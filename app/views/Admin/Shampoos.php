@@ -47,30 +47,20 @@
                     <tr>
                       <th scope="col">ID</th>
                       <th scope="col">Name</th>
-                      <th scope="col">Description</th>
-                      <th scope="col">Quantity</th>
                       <th scope="col">Price</th>
                       <th scope="col">Picture</th>
                       <th colspan="2" class="text-center">Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                      <th scope="row" class="align-bottom">1</th>
-                      <td class="align-bottom">Shampoo</td>
-                      <td class="align-bottom">this shampoo</td> 
-                      <td class="align-bottom">15</td>
-                      <td class="align-bottom">$50.95</td>
-                      <td>
-                            <img class="rounded-circle" src="#" width="50">
-                      </td>
-                      <td class="text-center align-bottom"><a class="edit-btn" href='AdminEditProduct'>Edit</a></td>
-                      <td class="text-center align-bottom"><a class="del-btn" href='#'>Delete</a></td>
-                    </tr>
-                </tbody>
+                <?php 
+            
+            foreach ($data as $shampoo){
+                 require APPROOT . '/views/Divs/AdminShampooDiv.php'; 
+                 
+                }
+
+                ?>
             </table>
-
-
         </div>
     </div>
 </body>

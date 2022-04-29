@@ -16,7 +16,7 @@
         <?php 
             
             foreach ($data as $shampoo){
-                require APPROOT . '/views/User/ShampooDiv.php';
+                require APPROOT . '/views/Divs/ShampooDiv.php';
                  
             }
 
