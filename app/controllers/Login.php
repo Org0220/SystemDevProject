@@ -63,15 +63,15 @@ class Login extends Controller
                     'pass' => $_POST['password'],
                     'pass_verify' => $_POST['verify_password'],
                     'pass_hash' => password_hash($_POST['password'], PASSWORD_DEFAULT),
-                    'name' => $_POST['name'];
-                    'phone_number' => $_POST['phone_numbmer'];
+                    'name' => $_POST['name'],
+                    'phone_number' => $_POST['phone_numbmer'],
                     'email_error' => '',
                     'password_error' => '',
                     'password_match_error' => '',
                     'password_len_error' => '',
                     'msg' => '',
                 ];
-                if($this->validateData($data)){
+                if($this->validate_client($data)){
                     if($this->UserModel->create($data)){
                         echo '
                         <div class="text-center">
@@ -103,4 +103,22 @@ class Login extends Controller
         session_destroy();
         echo '<meta http-equiv="Refresh" content="1; url=/SystenDevProject/Login/">';
     }
+
+
+    private function validate_client($raw_data)
+    {
+        $data = ['error' => []];
+        $data['title'] = isset($raw_data['title']) ? trim($raw_data['title']) : '';
+        $data['image_url'] = image_upload();
+
+        if (!$data['title']) {
+            $data['error'][] = 'Title must not be empty!';
+        }
+        if (!$data['image_url']) {
+            $data['error'][] = 'Image uploaded must be of type jpeg, gif, or png';
+        }
+
+        return $data;
+    }
+    
 }

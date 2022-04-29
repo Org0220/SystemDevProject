@@ -1,6 +1,6 @@
 <?php
 
-    class Services extends Controller{
+    class Appointment extends Controller{
 
         public function __construct()
         {
@@ -40,7 +40,7 @@
                     if ($isSucc) {
                         $this->read_service('Admin/Service', ['msg' => 'Service successfully created!']);
                     } else {
-                        $this->read_service('Admin/addService', ['error' => ['Error creating news!']]);
+                        $this->read_service('Admin/Service', ['error' => ['Error creating news!']]);
                     }
                 }
             }
