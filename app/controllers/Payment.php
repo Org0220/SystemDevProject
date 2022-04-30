@@ -9,33 +9,26 @@ class Payment extends Controller
 
     public function create_checkout_session()
     {
-        $data = $this->parse_values($_POST);
+        $data = $this->parse_values($_SESSION);
+        $_SESSION['is_colored'] = isset($_POST['colored']);
 
-        if (!empty($data['error'])) {
-        } else {
-            $checkout_session = \Stripe\Checkout\Session::create([
-                'line_items' => [[
-                    'price_data' => [
-                        'currency' => 'cad',
-                        'product_data' => [
-                            'name' => '[INSERT SERVICE NAME HERE]'
-                        ],
-                        'unit_amount' => $data['price'],
+        $checkout_session = \Stripe\Checkout\Session::create([
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'cad',
+                    'product_data' => [
+                        'name' => $data['service_name'],
                     ],
-                    'quantity' => 1,
-                ]],
-                'mode' => 'payment',
-                'success_url' => URLROOT . '/payment/checkout_success',
-                'cancel_url' => URLROOT . '/payment/checkout_cancel'
-            ]);
+                    'unit_amount' => $data['price'],
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => URLROOT . '/appointment/create_appointment',
+            'cancel_url' => URLROOT . '/payment/checkout_cancel'
+        ]);
 
-            header('Location: ' . $checkout_session->url);
-        }
-    }
-
-    public function checkout_success()
-    {
-        $this->view('Checkout/checkoutSuccess');
+        header('Location: ' . $checkout_session->url);
     }
 
     public function checkout_cancel()
@@ -45,5 +38,10 @@ class Payment extends Controller
 
     private function parse_values($raw_data)
     {
+        $data = [];
+        $data['price'] = $_SESSION['price'];
+        $data['service_name'] = $_SESSION['service_name'];
+
+        return $data;
     }
 }

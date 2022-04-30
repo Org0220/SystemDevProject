@@ -16,6 +16,7 @@ class Availabilities extends Controller
 
     public function index()
     {
+        header('Location: ' . URLROOT);
     }
 
     public function create_availabilities()
@@ -23,12 +24,12 @@ class Availabilities extends Controller
         if (!is_admin_logged_in()) {
             header('Location: ' . URLROOT);
         } else if (!isset($_POST['Create Availability'])) {
-            // Display create availabilities view.
+            $this->view('[INSERT VIEW NAME HERE]');
         } else {
             $data = $this->validate_availabilities($_POST);
 
             if (!empty($data['error'])) {
-                // Display create availabilities view with validation error.
+                $this->view('[INSERT VIEW NAME HERE]', $data);
             } else {
                 $isSucc = $this->avail_model->create($data);
 
@@ -46,12 +47,12 @@ class Availabilities extends Controller
         if (!is_admin_logged_in()) {
             header('Location: ' . URLROOT);
         } else if (!isset($_POST['Edit Availability'])) {
-            // Display edit availabilities view.
+            $this->view('[INSERT VIEW NAME HERE]');
         } else {
             $data = $this->validate_availabilities($_POST);
 
             if (!empty($data['error'])) {
-                // Display edit availabilities view with validation error.
+                $this->view('[INSERT VIEW NAME HERE]', $data);
             } else {
                 $data['id'] = $avail_id;
                 $isSucc = $this->avail_model->update($data);
