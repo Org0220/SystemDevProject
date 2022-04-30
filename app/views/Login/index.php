@@ -22,7 +22,7 @@
     </title>
 </head>
 
-<body background="Wallpaper.png" style= "background-repeat: no-repeat; background-size: cover;">
+<body background="<?php echo URLROOT.'/public/img/'?>Wallpaper.png" style= "background-repeat: no-repeat; background-size: cover;">
 
     <br><br><br><br>
     <!-- Login title -->
@@ -33,10 +33,10 @@
         </div>
     </div>
 
-    <form style="font-family: 'Open Sans', sans-serif;">        
+    <form method ='post' style="font-family: 'Open Sans', sans-serif;">        
         <div class="d-flex justify-content-center">
             <div class="col-sm-8"><br>
-                <input type="email" name = "email"class="form-control" id="inputEmail" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="Email"><br>
+                <input type="email" name = "email" class="form-control" id="inputEmail" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="Email"><br>
                 <input type="password" name = "password" class="form-control" id="inputPassword" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="Password:">
             </div>
         </div><br><br>
@@ -47,15 +47,10 @@
 
         <div class="d-flex justify-content-center">
             <div class="col-sm-6">
-                <h6 style="color:#94749b;">Don't have an account? <a href="Register.html" style="color:#94749b"><b> Sign up now!</b></a></h6>
+                <h6 style="color:#94749b;">Don't have an account? <a href="/SystemDevProject/Login/create" style="color:#94749b"><b> Sign up now!</b></a></h6>
             </div>
         </div>
 
-        <div class="d-flex justify-content-center">
-            <div class="col-sm-6">
-                <h6 style="color:#94749b;">Admin Login? <a href="AdminLogin.html" style="color:#94749b"><b> Click here</b></a>
-            </div>
-        </div>
     </form>
 </section>
 

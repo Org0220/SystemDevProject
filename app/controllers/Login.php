@@ -3,13 +3,14 @@ class Login extends Controller
 {
     public function __construct()
     {
-        $this->adminEmail = "Admin";
+        $this->adminEmail = "Admin@gmail.com";
          $this->adminPassword = "Password";
         $this->UserModel = $this->model('UserModel');
     }
 
     public function index()
     {
+        
         if(!isset($_POST['login'])){
             $this->view('Login/index');
         }
@@ -18,7 +19,7 @@ class Login extends Controller
             $password = $_POST['password'];
             if($password == $this->adminPassword &&  $email == $this->adminEmail)
             { 
-                $this->view('Admin/index');
+                header('Location: ' . URLROOT . '/Services/admin_services');
                 $_SESSION['admin'] = "in";
             } else {
                 $user = $this->UserModel->getUser($_POST['email']);
@@ -31,7 +32,7 @@ class Login extends Controller
                         $data = [
                             'msg' => "Welcome, $user->email!",
                         ];
-                        $this->view('Home/home',$data);
+                        $this->view('User/index',$data);
                     }
                     else{
                         $data = [
@@ -53,7 +54,7 @@ class Login extends Controller
     public function create()
     {
         if(!isset($_POST['register'])){
-            $this->view('Login/create');
+            $this->view('Login/Register');
         }
         else{
             $user = $this->UserModel->getUser($_POST['email']);
@@ -63,8 +64,8 @@ class Login extends Controller
                     'pass' => $_POST['password'],
                     'pass_verify' => $_POST['verify_password'],
                     'pass_hash' => password_hash($_POST['password'], PASSWORD_DEFAULT),
-                    'name' => $_POST['name'],
-                    'phone_number' => $_POST['phone_numbmer'],
+                    'name' => $_POST['first_name'] . " " . $_POST['last_name'],
+                    'phone_number' => $_POST['phone_number'],
                     'email_error' => '',
                     'password_error' => '',
                     'password_match_error' => '',
@@ -79,7 +80,7 @@ class Login extends Controller
                           <span class="sr-only">Please wait creating the account for '.trim($_POST["email"]).'</span>
                         </div>
                       </div>';
-                        echo '<meta http-equiv="Refresh" content="2; url=/SystemDevProejct/Login/">';
+                        echo '<meta http-equiv="Refresh" content="2; url=/SystemDevProject/Login/">';
                     }
                 } 
             }
@@ -87,7 +88,7 @@ class Login extends Controller
                 $data = [
                     'msg' => "User: ". $_POST['email'] ." already exists",
                 ];
-                $this->view('Login/create',$data);
+                $this->view('Login/Register',$data);
             }
         }
     }
@@ -101,21 +102,31 @@ class Login extends Controller
         unset($_SESSION['client_id']);
         unset($_SESSION['client_name']);
         session_destroy();
-        echo '<meta http-equiv="Refresh" content="1; url=/SystenDevProject/Login/">';
+        echo '<meta http-equiv="Refresh" content="1; url=/SystemDevProject/Login/">';
+    }
+
+    public function adminLogout(){
+        unset($_SESSION['admin']);
+        session_destroy();
+        echo '<meta http-equiv="Refresh" content="1; url=/SystemDevProject/Login/">';
     }
 
 
-    private function validate_client($raw_data)
-    {
-        $data = ['error' => []];
-        $data['title'] = isset($raw_data['title']) ? trim($raw_data['title']) : '';
-        $data['image_url'] = image_upload();
 
-        if (!$data['title']) {
+
+    private function validate_client($data)
+    {
+       
+        $prev = '/\b[a-zA-Z0-9+_.-]{6,16}@[a-zA-Z0-9]{4,8}.([a-zA-Z]{2,5})\b/i';
+
+        if (preg_match($prev, $data['email'])) {
             $data['error'][] = 'Title must not be empty!';
         }
-        if (!$data['image_url']) {
-            $data['error'][] = 'Image uploaded must be of type jpeg, gif, or png';
+        if(strlen($data['pass']) < 6){
+            $data['password_len_error'] = 'Password can not be less than 6 characters';
+        }
+        if($_POST['password'] != $data['pass_verify']){
+            $data['password_match_error'] = 'Password does not match';
         }
 
         return $data;

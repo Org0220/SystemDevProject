@@ -1,6 +1,6 @@
 <?php
 
-    class AppointmentModel{
+    class AppointmentModel extends Model{
         public function __construct(){
             $this->db = new Model;
         }

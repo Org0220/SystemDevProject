@@ -10,9 +10,9 @@
             return $this->db->getResultSet();
         }
 
-        public function getUser($id){
-            $this->db->query("SELECT * FROM client WHERE id = :id");
-            $this->db->bind(':id',$id);
+        public function getUser($email){
+            $this->db->query("SELECT * FROM client WHERE email = :email");
+            $this->db->bind(':email',$email);
             return $this->db->getSingle();
         }
 

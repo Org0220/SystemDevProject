@@ -12,7 +12,7 @@ class Showcase extends Controller
         $this->read_showcase('User/Gallery', []);
     }
 
-    public function admin_showcase()
+    public function admin_showcases()
     {
         if (!is_admin_logged_in()) {
             header('Location: ' . URLROOT);

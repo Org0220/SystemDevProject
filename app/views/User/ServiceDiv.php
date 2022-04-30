@@ -48,7 +48,7 @@
                 </div>
                 <!-- div for button -->
                 <div class="third-row" style="float:right; width:100%; height:auto; ">
-                    <button type="button" class="btn btn-primary" style=" 
+                    <a href="/SystemDevProject/Home/"><button type="button" class="btn btn-primary"  style=" 
                      float: right;
                      width: 150px;
                      height: 40px;
@@ -56,7 +56,7 @@
                      background-color: #F8C8DC;
                      border: 1px solid #707070;
                      border-radius: 12px;
-                     opacity: 1;">Book Now</button>
+                     opacity: 1;">Book Now</button></a>
                 </div>
             </div>
         </div>

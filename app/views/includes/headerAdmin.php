@@ -54,44 +54,44 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="AdminAppointments.html"
+                        <a class="nav-link" href="/SystemDevProject/Appointments/admin_appointments"
                             style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Appointments</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="AdminServices.html"
+                        <a class="nav-link" href="/SystemDevProject/Services/admin_services"
                             style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Services</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="AdminProducts.html"
+                        <a class="nav-link" href="/SystemDevProject/Shampoos/admin_shampoos"
                             style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Products</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="AdminNewsletter.html"
+                        <a class="nav-link" href="/SystemDevProject/News/admin_news"
                             style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Newsletter</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="AdminGallery.html"
+                        <a class="nav-link" href="/SystemDevProject/Showcase/admin_showcases"
                             style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Gallery</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="Availabilities.html"
+                        <a class="nav-link" href="/SystemDevProject/Availabilities/"
                             style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Availabilities</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="DatabasePreview.html"
+                        <a class="nav-link" href="/SystemDevProejct/Admin/Database"
                             style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Database</a>
                     </li>
                 </ul>
 				
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"
+                        <a class="nav-link" href="/SystemDevProject/Login/adminLogout"
                             style="float: right; text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Logout</a>
                     </li>
                 </ul>

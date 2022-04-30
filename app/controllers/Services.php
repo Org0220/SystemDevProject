@@ -10,8 +10,7 @@
 
         public function index()
         {
-            
-            $this->read_service('User/Services',  $this->ServiceModel->getServices());
+                $this->read_service('User/Services',  $this->ServiceModel->getServices());
         }
     
         public function admin_services()
@@ -19,7 +18,7 @@
             if (!is_admin_logged_in()) {
                 header('Location: ' . URLROOT);
             } else {
-                $this->read_service('Admin/Service', []);
+                $this->read_service('Admin/Services', $this->ServiceModel->getServices());
             }
         }
     
@@ -33,12 +32,12 @@
                 $data = $this->validate_service($_POST);
                 
                 if (!empty($data['error'])) {
-                    $this->read_service('Admin/addService', $data);
+                    $this->read_service('Admin/addServices', $data);
                 } else {
                     $isSucc = $this->ServiceModel->create($data);
     
                     if ($isSucc) {
-                        $this->read_service('Admin/Service', ['msg' => 'Service successfully created!']);
+                        $this->read_service('Admin/Services', ['msg' => 'Service successfully created!']);
                     } else {
                         $this->read_service('Admin/addService', ['error' => ['Error creating news!']]);
                     }
@@ -60,11 +59,11 @@
                     $data['id'] = $service_id; 
                     
                     if (!empty($data['error'])) {
-                        $this->read_service('Admin/Service', $data);
+                        $this->read_service('Admin/Services', $data);
                     } else {
                         $isSucc = $this->ServiceModel->update($data);
                         if ($isSucc) {
-                            $this->read_service('Admin/Service', ['msg' => 'Service successfully created!']);
+                            $this->read_service('Admin/Services', ['msg' => 'Service successfully created!']);
                         } else {
                             $this->read_service('Admin/editService', ['error' => ['Error creating news!']]);
                         }
@@ -84,7 +83,7 @@
                     $isSucc,
                     'Service ' . $service_id . ' successfully deleted!',
                     'Error deleting serviec ' . $service_id,
-                    'Admin/Service'
+                    'Admin/Services'
                 );
             }
         }
@@ -101,7 +100,7 @@
             $data['price'] = isset($raw_data['price']) && is_numeric(trim($raw_data['price'])) ? trim($raw_data['price']) : '';
             $data['duration'] = isset($raw_data['duration']) && is_numeric(trim($raw_data['duration'])) ? trim($raw_data['duration']) : '';
             $data['description'] = isset($raw_data['description']) ? $raw_data['description'] : '';
-            $data['imgURL'] = isset($raw_data['imgURL']) ? trim($raw_data['imgURL']) : '';
+            $data['imgURL'] = image_upload();
     
             if (!$data['name']) {
                 $data['error'][] = 'Name must not be empty!';

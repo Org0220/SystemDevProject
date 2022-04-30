@@ -13,7 +13,14 @@ class Admin extends Controller
     }
     // All the functions in this class should start with if (is_admin_logged_in())
     /*------------------------------------------------------------------------------------------------------------------------*/
-
+    
+    public function Database() {
+        if (!is_admin_logged_in()) {
+            header('Location: ' . URLROOT);
+        } else {
+            $this->view('Admin/DatabasePreview');
+        }
+    }
     public function addShampoo()
     {
         if (is_admin_logged_in()) {

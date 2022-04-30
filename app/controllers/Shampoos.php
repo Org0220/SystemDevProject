@@ -10,7 +10,6 @@
 
         public function index()
         {
-            
             $this->read_shampoo('User/Shampoos',  $this->ShampooModel->getShampoos());
         }
     
@@ -19,7 +18,7 @@
             if (!is_admin_logged_in()) {
                 header('Location: ' . URLROOT);
             } else {
-                $this->read_shampoo('Admin/Shampoo', []);
+                $this->read_shampoo('Admin/Shampoos', $this->ShampooModel->getShampoos());
             }
         }
     
@@ -38,7 +37,7 @@
                     $isSucc = $this->ShampooModel->create($data);
     
                     if ($isSucc) {
-                        $this->read_shampoo('Admin/Shampoo', ['msg' => 'Shampoo successfully created!']);
+                        $this->read_shampoo('Admin/Shampooss', ['msg' => 'Shampoo successfully created!']);
                     } else {
                         $this->read_shampoo('Admin/addShampoo', ['error' => ['Error creating news!']]);
                     }
@@ -60,11 +59,11 @@
                     $data['id'] = $shampoo_id; 
                     
                     if (!empty($data['error'])) {
-                        $this->read_shampoo('Admin/Shampoo', $data);
+                        $this->read_shampoo('Admin/Shampoos', $data);
                     } else {
                         $isSucc = $this->ShampooModel->update($data);
                         if ($isSucc) {
-                            $this->read_shampoo('Admin/Shampoo', ['msg' => 'Shampoo successfully created!']);
+                            $this->read_shampoo('Admin/Shampoos', ['msg' => 'Shampoo successfully created!']);
                         } else {
                             $this->read_shampoo('Admin/editShampoo', ['error' => ['Error creating news!']]);
                         }
@@ -84,7 +83,7 @@
                     $isSucc,
                     'Shampoo ' . $shampoo_id . ' successfully deleted!',
                     'Error deleting serviec ' . $shampoo_id,
-                    'Admin/Shampoo'
+                    'Admin/Shampoos'
                 );
             }
         }
@@ -100,7 +99,7 @@
             $data['name'] = isset($raw_data['name']) ? trim($raw_data['name']) : '';
             $data['price'] = isset($raw_data['price']) ? trim($raw_data['price']) : '';
             $data['description'] = isset($raw_data['description']) ? trim($raw_data['description']) : '';
-            $data['image_url'] = isset($raw_data['image_url']) ? $raw_data['image_url'] : '';
+            $data['image_url'] = image_upload();
 
             if (!$data['name']) {
                 $data['error'][] = 'Name must not be empty!';
