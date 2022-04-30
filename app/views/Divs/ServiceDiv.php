@@ -22,7 +22,7 @@
                 <div class="second-row" style="float: left; width:100%; height:150px;">
                     <!-- div for picture -->
                     <div class="first-half" style="width: 30%; float:left;">
-                        <img src="<?php echo URLROOT.'/public/img/'?>Example.PNG" style="
+                        <img src="<?php echo URLROOT.'/public/img/'.$service->imgURL?>" style="
                          border-radius: 360px; 
                          opacity: 1; 
                          width:50%; 

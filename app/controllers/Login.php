@@ -70,7 +70,7 @@ class Login extends Controller
                     'password_error' => '',
                     'password_match_error' => '',
                     'password_len_error' => '',
-                    'msg' => '',
+                    'msg' => ''
                 ];
                 if($this->validate_client($data)){
                     if($this->UserModel->create($data)){

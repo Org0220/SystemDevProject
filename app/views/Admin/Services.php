@@ -21,6 +21,7 @@
         opacity: 1;">Services</h5><br>
 
         <!-- div to add a new service -->
+        <a href = "/SystemDevProject/Services/create_service">
         <button type="submit" name="addServiceBtn" class="btn btn-primary mr-2" style="
         float: right;
         width: 80px;
@@ -30,16 +31,27 @@
         color: rgb(255, 255, 255);
         ">+
         </button>
+        </a>
         <br>
-
-        <?php 
+        <br>
+    <?php 
+        if(isset($data['error'])) {
+            echo '<div class="alert alert-danger" role="alert">';
+            echo $data['error'];
+            echo '</div>';
+        }
+        if(isset($data['msg'])) {
+            echo '<div class="alert alert-success" role="alert">';
+            echo $data['msg'];
+            echo '</div>';
+        }
+        if(isset($data['services'])) {
+            foreach ($data['services'] as $service){
+                 require APPROOT . '/views/Divs/AdminServiceDiv.php';      
+            }
+        }
             
-            foreach ($data as $service){
-                 require APPROOT . '/views/Divs/AdminServiceDiv.php'; 
-                 
-                }
-
-                ?>
+    ?>
 
         
 

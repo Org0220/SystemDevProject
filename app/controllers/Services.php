@@ -18,7 +18,8 @@
             if (!is_admin_logged_in()) {
                 header('Location: ' . URLROOT);
             } else {
-                $this->read_service('Admin/Services', $this->ServiceModel->getServices());
+                $data['services'] = $this->ServiceModel->getServices();
+                $this->read_service('Admin/Services', $data);
             }
         }
     
@@ -26,13 +27,13 @@
         {
             if (!is_admin_logged_in()) {
                 header('Location: ' . URLROOT);
-            } else if (!isset($_POST['Create Service'])) {
-                header('Location: ' . URLROOT . '/news/create_service');
+            } else if (!isset($_POST['Create_Service'])) {
+                $this->view('Admin/addService');
             } else {
                 $data = $this->validate_service($_POST);
                 
                 if (!empty($data['error'])) {
-                    $this->read_service('Admin/addServices', $data);
+                    $this->read_service('Admin/addService', $data);
                 } else {
                     $isSucc = $this->ServiceModel->create($data);
     
@@ -47,38 +48,46 @@
     
         public function update_service($service_id)
         {
+            
+            $service = $this->ServiceModel->getService($service_id);
             if (!is_admin_logged_in()) {
                 header('Location: ' . URLROOT);
-            } else if (!isset($_POST['Update Service'])) {
-                $this->view('Admin/editService');
+            } else if (!isset($_POST['Update_Service'])) {
+                $data ['service'] = $service;
+                $this->view('Admin/editService', $data);
             } else {
                 $data = $this->validate_service($_POST);
                 if (!empty($data['error'])) {
+                    $data ['service'] = $service;
                     $this->view('Admin/editService', $data);
                 } else {
                     $data['id'] = $service_id; 
                     
                     if (!empty($data['error'])) {
+                        $data ['service'] = $service;
                         $this->read_service('Admin/Services', $data);
                     } else {
                         $isSucc = $this->ServiceModel->update($data);
                         if ($isSucc) {
-                            $this->read_service('Admin/Services', ['msg' => 'Service successfully created!']);
+                            $data ['service'] = $service;
+                            $data ['msg'] = 'Service successfully updated!';
+                            $this->read_service('Admin/Services', $data);
                         } else {
-                            $this->read_service('Admin/editService', ['error' => ['Error creating news!']]);
+                            $data ['service'] = $service;
+                            $data ['error'] = 'Error creating service!';
+                            $this->read_service('Admin/editService', $data);
                         }
                     }
                 }
             }
         }
     
-        public function delete_services($service_id)
+        public function delete_service($service_id)
         {
             if (!is_admin_logged_in()) {
                 header('Location: ' . URLROOT);
             } else {
-                $data = ['id' => $service_id]; // maybe check if service_id is a number?
-                $isSucc = $this->ServiceModel->delete($data);
+                $isSucc = $this->ServiceModel->delete($service_id);
                 $this->view_selector(
                     $isSucc,
                     'Service ' . $service_id . ' successfully deleted!',
@@ -124,8 +133,7 @@
         {
             $prop = $isSucc ? 'msg' : 'error';
             $message = $isSucc ? $msg : $error;
-
-            $this->view($view, [$prop => $message]);
+            $this->view($view, [$prop => $message, 'services' => $this->ServiceModel->getServices()]);
         }
     }
 ?>

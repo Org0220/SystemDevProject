@@ -72,13 +72,12 @@
             }
         }
     
-        public function delete_shampoos($shampoo_id)
+        public function delete_shampoo($shampoo_id)
         {
             if (!is_admin_logged_in()) {
                 header('Location: ' . URLROOT);
             } else {
-                $data = ['id' => $shampoo_id]; // maybe check if shampoo_id is a number?
-                $isSucc = $this->ShampooModel->delete($data);
+                $isSucc = $this->ShampooModel->delete($shampoo_id);
                 $this->view_selector(
                     $isSucc,
                     'Shampoo ' . $shampoo_id . ' successfully deleted!',
@@ -122,7 +121,7 @@
             $prop = $isSucc ? 'msg' : 'error';
             $message = $isSucc ? $msg : $error;
 
-            $this->view($view, [$prop => $message]);
+            $this->view($view, [$prop => $message, 'shampoos' => $this->ShampooModel->getShampoos()]);
         }
     }
 ?>

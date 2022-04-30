@@ -26,21 +26,20 @@
                 <div class="mb-5">
                     <div class="mb-4">
                         <label for="serviceTitle">Service</label>
-                        <input id="serviceTitle" name = "title" class="form-control" type="text" aria-label="titleLabel">
+                        <input id="serviceTitle" name = "name" class="form-control" value = "<?php echo  $data['service']->name;?>"  type="text" aria-label="titleLabel">
                     </div>
+                    
                     <div class="mb-4">  
                         <label for="serviceDescription" class="form-label">Description</label>
-                        <textarea id="serviceDescription" name = "description" class="form-control" rows="5"></textarea>
+                        <textarea id="serviceDescription" name = "description" class="form-control"   rows="5"><?php echo  $data['service']->description?></textarea>
                     </div>
-
-                    <div class="mb-4">
-                        <label for="serviceDuration">Duration</label>
-                        <input id="serviceDuration" name = "duration" class="form-control" type="number" step="0.01" aria-label="durationLabel">
-                    </div>
-
                     <div class="mb-4">
                         <label for="servicePrice">Price</label>
-                        <input id="servicePrice" name = "price" class="form-control" type="number" step="0.01" aria-label="priceLabel">
+                        <input id="servicePrice" name = "price"class="form-control" type="number" value = "<?php echo  $data['service']->price?>" step="0.01" aria-label="priceLabel">
+                    </div>
+                    <div class="mb-4">
+                        <label for="servicePrice">Duration</label>
+                        <input id="duration" name = "duration"class="form-control" type="number" value = "<?php echo  $data['service']->duration?>" step="0.01" aria-label="priceLabel">
                     </div>
                     <div>
                         <label for="servicePicture">Picture</label>
@@ -49,7 +48,7 @@
                 </div>
                 
                 <div style="height: 40px;">
-                    <a href="AdminProducts.html" type="button" class="btn btn-secondary" style="
+                    <a href="AdminProducts.html" type="button" class="btn btn-secondary"  style="
                         float: left;
                         width: 150px;
                         height: 40px;
@@ -57,16 +56,32 @@
                         border: 1px solid #707070;
                         color: black;
                     ">Cancel</a>
-                    <button type="submit" name="Update Service" class="btn btn-primary" style="
+                    <button type="submit" name="Create_Service" class="btn btn-primary" style="
                         float: right;
                         width: 150px;
                         height: 40px;
                         background: #A7C7E7;
                         border: 1px solid #707070;
                         color: black;
-                    ">Update</button>
+                    ">Add Service</button>
+                    <button type="submit" name="Update_Service" class="btn btn-primary"  style="
+                        float: right;
+                        width: 150px;
+                        height: 40px;
+                        background: #A7C7E7;
+                        border: 1px solid #707070;
+                        color: black;
+                    ">Update Service</button>
                 </div>
             </form>
+            <?php
+                if(isset($data['error'])) {
+                    foreach($data['error'] as $error) {
+                        echo '<div class="alert alert-danger" role="alert">';
+                        echo $error;
+                        echo '</div>';}
+                }
+            ?>
         </div>
     </div>
 </body>

@@ -28,8 +28,9 @@
                 <div class="mb-5">
                     <div class="mb-4">
                         <label for="serviceTitle">Service</label>
-                        <input id="serviceTitle" name = "title" class="form-control" type="text" aria-label="titleLabel">
+                        <input id="serviceTitle" name = "name" class="form-control" type="text" aria-label="titleLabel">
                     </div>
+                    
                     <div class="mb-4">  
                         <label for="serviceDescription" class="form-label">Description</label>
                         <textarea id="serviceDescription" name = "description" class="form-control" rows="5"></textarea>
@@ -37,6 +38,10 @@
                     <div class="mb-4">
                         <label for="servicePrice">Price</label>
                         <input id="servicePrice" name = "price"class="form-control" type="number" step="0.01" aria-label="priceLabel">
+                    </div>
+                    <div class="mb-4">
+                        <label for="servicePrice">Duration</label>
+                        <input id="duration" name = "duration"class="form-control" type="number" step="0.01" aria-label="priceLabel">
                     </div>
                     <div>
                         <label for="servicePicture">Picture</label>
@@ -53,7 +58,7 @@
                         border: 1px solid #707070;
                         color: black;
                     ">Cancel</a>
-                    <button type="submit" name="Create Service" class="btn btn-primary" style="
+                    <button type="submit" name="Create_Service" class="btn btn-primary" style="
                         float: right;
                         width: 150px;
                         height: 40px;
@@ -63,6 +68,13 @@
                     ">Add Service</button>
                 </div>
             </form>
+            <?php
+                if(isset($data['error'])) {
+                    foreach($data['error'] as $error) {
+                        echo '<div class="alert alert-danger" role="alert">';
+                        echo $error;}
+                }
+            ?>
         </div>
     </div>
 </body>
