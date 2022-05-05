@@ -1,0 +1,424 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .footer {
+            position: relative;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: red;
+            color: white;
+            text-align: center;
+        }
+
+        #calendar_table {
+            background-color: rgb(231, 231, 231);  
+            font-size: 0.9em; 
+            font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+            width: 100%;
+            
+            border: solid 2px rgb(255, 180, 190);
+        }
+
+        caption {
+            caption-side: top; 
+            text-align: center;
+            padding-bottom: 20px; 
+            font-size: 1.6em; 
+        }
+
+        .calendar_weekdays {
+            background-color: rgb(240, 240, 240);
+            width: 14.28%; 
+            border-bottom: 3px solid gray;
+        }
+
+        .calendar_dates {
+            text-align: left; 
+            vertical-align: top;
+            border: 1px dotted rgb(180, 180, 180);
+            background-color: white;
+            height: 100px;
+        }
+
+        .calendar_dates > button {
+            background: transparent; 
+            border: none; 
+            display: block; 
+            width: 100%; 
+            height: 100%;
+            font-size: 20px;
+        }
+
+        #calendar_today {
+            background-color: rgba(255, 192, 204, 0.3);
+            border: 1px solid rgb(255, 192, 204);
+        }
+
+    </style>
+
+    <title>
+        Quedescils
+    </title>
+</head>
+
+<body>
+    <header style=" position: sticky">
+        <div class="color-bar" style="
+        width: 100%;
+        height:3%;
+        background: transparent linear-gradient(90deg, #A7C7E7 0%, #FBFFE2 100%) 0% 0% no-repeat padding-box;
+        border: 1px solid #707070;
+        opacity: 1;">
+        </div>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white" style="border-bottom: 1px solid black;">
+        
+            <li class="navbar-brand">
+                <a class="nav-link" href="AdminHome.html"
+                    style="font: normal normal normal 25px/25px Lucida Fax; color: black">Que Des Cils</a>
+            </li>
+        
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <!-- <i class="fas fa-bars"></i> -->
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    
+					
+                    <li class="nav-item">
+                        <a class="nav-link" href="AdminAppointments.html"
+                            style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Appointments</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="AdminServices.html"
+                            style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Services</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="AdminProducts.html"
+                            style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Products</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="AdminNewsletter.html"
+                            style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Newsletter</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="AdminGallery.html"
+                            style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Gallery</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="Availabilities.html"
+                            style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Availabilities</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="DatabasePreview.html"
+                            style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Database</a>
+                    </li>
+                </ul>
+				
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"
+                            style="float: right; text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container" style=" margin: auto; margin-top: 5%; height: auto; ">
+        <!-- add code here -->
+
+        <!-- title -->
+        <h4 style="
+        text-align: center;
+        font: normal normal normal 50px/59px Lucida Fax;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;">Home</h4>
+
+        <!-- Calendar -->
+        <div style="height: 100px; width: auto; padding: 15px 0px; margin: auto;">
+            <button id="lastMonth" class="btn" href="AdminEditGallery.html" style="
+                float: left;
+                width: 200px;
+                height: 40px;
+                background: #D7E7E4;
+                border: 1px solid #707070;
+                color: black;
+                ">
+            Previous Month
+            </button>
+            <button id="nextMonth" class="btn" href="#" style="
+                float: right;
+                width: 200px;
+                height: 40px;
+                background: #D7E7E4;
+                border: 1px solid #707070;
+                color: black;
+                ">
+            Next Month
+            </button>
+        </div>
+        <div id="calendar"></div>
+        
+        <div class="modal fade" id="timeModal" tabindex="-1" aria-labelledby="timeModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header"  style="background: #D7E7E4;">
+                        <h5 class="modal-title" id="timeModalLabel">Select Timestamp</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body mb-3">
+                        <form>
+                            <!-- input in text format, dd/mm/yyyy, hide if not wanted. if using href with button, then change within js -->
+                            <div class="mb-5">
+                                <label for="date">Date</label>
+                                <input id="date" class="form-control" type="text" placeholder="Date" aria-label="dateLabel" disabled>
+                            </div>
+                            
+                            <!-- insert buttons with the timestamp here -->
+                            <div style="text-align: center;">
+                                <!-- example timestamp -->
+                                <div class="mb-3">
+                                    <button type="submit" name="selectTime" class="btn btn-primary" style="
+                                        width: 150px;
+                                        height: 40px;
+                                        background: #A7C7E7;
+                                        border: 1px solid #707070;
+                                        color: black;
+                                    ">12:00 to 12:30</button>
+                                </div>
+                                
+                                <!-- example timestamp -->
+                                <div>
+                                    <button type="submit" name="selectTime" class="btn btn-primary" style="
+                                        width: 150px;
+                                        height: 40px;
+                                        background: #A7C7E7;
+                                        border: 1px solid #707070;
+                                        color: black;
+                                    ">12:30 - 1:45</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="
+                            float: left;
+                            width: 150px;
+                            height: 40px;
+                            background: #A7C7E7;
+                            border: 1px solid #707070;
+                            color: black;
+                        ">Cancel</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+    </div>
+</body>
+
+<footer style="position:sticky; margin-top:70px;">
+    <div class="color-bar" style="
+    width: 100%;
+    height:3%;
+    background: transparent linear-gradient(90deg, #A7C7E7 0%, #FBFFE2 100%) 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    opacity: 1;">
+    </div>
+</footer>
+
+</html>
+
+<script>
+    var selectedDate = new Date();
+    document.getElementById("calendar").innerHTML = createCalendar(selectedDate);
+
+    document.getElementById('nextMonth').onclick = function() {
+        // adding a month to the date
+        var month = selectedDate.getMonth() + 1;
+        
+        // if month after december
+        if (month >= 12) {
+            //sets to january
+            month = 0;
+
+            // sets next year
+            selectedDate.setFullYear(selectedDate.getFullYear() + 1);
+        }
+
+        // sets the month to the date and regenerates calendar
+        selectedDate.setMonth(month);
+        document.getElementById("calendar").innerHTML = createCalendar(selectedDate);
+    }
+
+    document.getElementById('lastMonth').onclick = function() {
+        // removing a month to the date
+        var month = selectedDate.getMonth() - 1;
+
+        // if month before january
+        if (month < 0) {
+            // sets to december
+            month = 11;
+
+            // sets previous year
+            selectedDate.setFullYear(selectedDate.getFullYear() - 1);
+        }
+
+        // sets the month to the date and regenerates calendar
+        selectedDate.setMonth(month);
+        document.getElementById("calendar").innerHTML = createCalendar(selectedDate);
+    }
+
+    /* generate calendar */
+    function createCalendar(calDate) {
+        var calendarHTML = "<table id='calendar_table' class='caption-top'>";
+        calendarHTML += calCaption(calDate);
+        calendarHTML += calWeekdayRow();
+        calendarHTML += calDays(calDate);
+        calendarHTML += "</table>";
+        return calendarHTML;
+    }
+
+    /* generate month caption on top */
+    function calCaption(calDate) {
+        //converting month from int to string
+        var monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var thisMonth = calDate.getMonth();
+        
+        //year
+        var thisYear = calDate.getFullYear();
+        
+        //adding caption
+        return "<caption>" + monthName[thisMonth] + " " + thisYear + "</caption>";
+    }
+
+    /* to generate table labels */
+    function calWeekdayRow() {
+        // weekdays
+        var dayName = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+        var rowHTML = "<tr>";
+        
+        // adding weekdays
+        for (var i = 0; i < dayName.length; i++) {
+            rowHTML += "<th class='calendar_weekdays'>" + dayName[i] + "</th>";
+        }
+        
+        rowHTML += "</tr>";
+        return rowHTML;
+    }
+
+    /* to generate the number of dates in a month */
+    function daysInMonth(calDate) {
+        // days in each month
+        var dayCount = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        
+        // selected year and month
+        var thisYear = calDate.getFullYear();
+        var thisMonth = calDate.getMonth();
+        
+        // changing number of days based on leap year
+        if (thisYear % 4 === 0) {
+            if ((thisYear % 100 != 0) || (thisYear % 400 === 0)) {
+                dayCount[1] = 29;
+            }
+        }
+        
+        return dayCount[thisMonth];
+    }
+
+    /* to generate the calendar dates */
+    function calDays(calDate) {
+        // finding the first day of the month
+        var day = new Date(calDate.getFullYear(), calDate.getMonth(), 1);
+        var weekDay = day.getDay();
+        
+        // empty dates before the first day
+        var htmlCode = "<tr>";
+        for (var i = 0; i < weekDay; i++) {
+            htmlCode += "<td></td>";
+        }
+        
+        //php to gather values, either here or in the modal with hidden input
+        //i is already date
+        var month = calDate.getMonth();
+        var year = calDate.getFullYear();
+        var totalDays = daysInMonth(calDate);
+
+        //today's date, to highlight
+        var currentDate = new Date();
+
+        for (var i = 1; i <= totalDays; i++) {
+            day.setDate(i);
+            weekDay = day.getDay();
+            
+            // if Sunday, then start the table row
+            if (weekDay === 0) {
+                htmlCode += "<tr>";
+            }
+
+            // add class to highlight current date
+            if (i === currentDate.getDate() && calDate.getMonth() === currentDate.getMonth() && calDate.getFullYear() === currentDate.getFullYear()) {
+                htmlCode += "<td class='calendar_dates' id='calendar_today'><button data-bs-toggle='modal' data-bs-target='#timeModal' data-bs-date='" + i + "/" + month + "/" + year + "'>" + i + "</button></td>";
+            } 
+            else {
+                htmlCode += "<td class='calendar_dates'><button data-bs-toggle='modal' data-bs-target='#timeModal' data-bs-date='" + i + "/" + month + "/" + year + "'>" + i + "</button></td>";
+            }
+        
+            // if Saturday, then end the table row
+            if (weekDay === 6) htmlCode += "</tr>";
+        } 
+        
+        return htmlCode;
+    }
+
+    var exampleModal = document.getElementById('timeModal');
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        //fetching date
+        var button = event.relatedTarget;
+        var date = button.getAttribute('data-bs-date');
+        
+        //setting date to display on modal
+
+        //in title
+        var modalTitle = exampleModal.querySelector('.modal-title');
+        modalTitle.textContent = 'Select Time on ' + date;
+
+        //in input for posting
+        var dateInput = document.getElementById('date');
+        dateInput.value = date;
+    });
+
+    // maybe also add another event listener to send to backend
+</script>
