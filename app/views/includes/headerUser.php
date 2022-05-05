@@ -31,15 +31,21 @@
 
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-white" style="border-bottom: 1px solid black;">
-            <!-- <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01" aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-bars"></i>
-        </button> -->
+            <li class="navbar-brand">
+                <a class="nav-link" href="/SystemDevProject/Home/"
+                    style="font: normal normal normal 25px/25px Lucida Fax; color: black">Que Des Cils</a>
+            </li>
+        
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <!-- <i class="fas fa-bars"></i> -->
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="/SystemDevProject/Home/" style="font: normal normal normal 25px/25px Lucida Fax;">Que Des Cils</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="/SystemDevProject/Home/" style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Home</a>
                     </li>

@@ -42,7 +42,8 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-white" style="border-bottom: 1px solid black;">
             <li class="navbar-brand">
-                <a class="nav-link" href="AdminHome.html"
+                <a class="nav-link" href="/SystemDevProject/Appointments/admin_appointments"
+
                     style="font: normal normal normal 25px/25px Lucida Fax; color: black">Que Des Cils</a>
             </li>
         
@@ -53,6 +54,10 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/SystemDevProject/Appointments/admin_appointments"
+                            style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Home</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/SystemDevProject/Appointments/admin_appointments"
                             style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Appointments</a>
