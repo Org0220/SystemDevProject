@@ -1,7 +1,7 @@
 <!--shampoo display for admin-->
 <tbody>
                     <tr>
-                      <th scope="row" class="align-bottom">1</th>
+                      <th scope="row" class="align-bottom"><?php echo $shampoo->id?></th>
                       <td class="align-bottom"><?php echo $shampoo->name?></td>
                       <td class="align-bottom"><?php echo $shampoo->price?></td>
                       <td>

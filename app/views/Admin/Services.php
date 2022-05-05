@@ -35,11 +35,7 @@
         <br>
         <br>
     <?php 
-        if(isset($data['error'])) {
-            echo '<div class="alert alert-danger" role="alert">';
-            echo $data['error'];
-            echo '</div>';
-        }
+        
         if(isset($data['msg'])) {
             echo '<div class="alert alert-success" role="alert">';
             echo $data['msg'];

@@ -11,9 +11,30 @@
         public function index()
         {
             
+            
+
             $this->read_service('User/Services',  $this->ServiceModel->getServices());
         }
-    
+
+        public function calendar($service_id) {
+            
+            $_SESSION['service_id'] = $service_id;
+            $this->view('User/calendar');
+        }
+
+        public function hours($day, $month, $year)
+        {
+            $data = [
+                `endHour` => 22
+            ];
+            $_SESSION['date'] = $day . '/' . $month . '/' . $year;
+            $data['hour'] = 7;
+            $data['minute'] = 0;  
+            $data['duration'] = $this->ServiceModel->getService( $_SESSION['service_id'])->duration;
+
+            $this->read_service('User/hours',  $data);
+        }
+        
         public function admin_services()
         {
             if (!is_admin_logged_in()) {

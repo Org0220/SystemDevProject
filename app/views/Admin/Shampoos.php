@@ -28,7 +28,7 @@
         opacity: 1;">Products</h4>
 
         <div style="text-align: right; height: 40px;" class="mb-4">
-            <a class="btn" href="AdminAddProduct.html" style="
+            <a class="btn" href="/SystemDevProject/Shampoos/create_shampoo" style="
                 float: right;
                 width: 100px;
                 height: 40px;
@@ -53,11 +53,17 @@
                     </tr>
                 </thead>
                 <?php 
-            
-            foreach ($data as $shampoo){
-                 require APPROOT . '/views/Divs/AdminShampooDiv.php'; 
+            if(isset($data['shampoos'])){
+                foreach ($data['shampoos'] as $shampoo){
+                    require APPROOT . '/views/Divs/AdminShampooDiv.php'; 
                  
                 }
+            }
+            if(isset($data['msg'])) {
+                echo '<div class="alert alert-success" role="alert">';
+                echo $data['msg'];
+                echo '</div>';
+            }
 
                 ?>
             </table>

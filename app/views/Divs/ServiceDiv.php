@@ -48,7 +48,7 @@
                 </div>
                 <!-- div for button -->
                 <div class="third-row" style="float:right; width:100%; height:auto; ">
-                    <a href="/SystemDevProject/Home/"><button type="button" class="btn btn-primary"  style=" 
+                    <a href="/SystemDevProject/Appointment/calendar/<?php echo $service->id?>"><button type="button" class="btn btn-primary"  style=" 
                      float: right;
                      width: 150px;
                      height: 40px;

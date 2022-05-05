@@ -42,7 +42,7 @@
             height: 100px;
         }
 
-        .calendar_dates > button {
+        .calendar_dates > a {
             background: transparent; 
             border: none; 
             display: block; 
@@ -227,10 +227,10 @@
 
             // add class to highlight current date
             if (i === currentDate.getDate() && calDate.getMonth() === currentDate.getMonth() && calDate.getFullYear() === currentDate.getFullYear()) {
-                htmlCode += "<td class='calendar_dates' id='calendar_today'><a href = '/SystemDevProject/Appointments/hours/" + i + "/" + month + "/" + year + "'>" + i + "</a></td>";
+                htmlCode += "<td class='calendar_dates' id='calendar_today'><a class = 'btn' role ='button' href = '/SystemDevProject/Appointments/hours/" + i + "/" + month + "/" + year +"'>" + i + "</a></td>";
             } 
             else {
-                htmlCode += "<td class='calendar_dates'><a href = '/SystemDevProject/Appointments/hours/" + i + "/" + month + "/" + year + "'>" + i + "</a></td>";
+                htmlCode += "<td class='calendar_dates '><a class = 'btn' role ='button''href = '/SystemDevProject/Appointments/hours/" + i + "/" + month + "/" + year + "'>" + i + "</a></td>";
             }
         
             // if Saturday, then end the table row

@@ -24,19 +24,12 @@
                 <div class="mb-5">
                     <div class="mb-4">
                         <label for="productTitle">Title</label>
-                        <input id="productTitle" name = "title" class="form-control" type="text" placeholder="Title" aria-label="titleLabel">
+                        <input id="productTitle" name = "name" class="form-control" type="text" placeholder="Title" aria-label="titleLabel" value = <?php echo $data['shampoo']->name?>>
                     </div>
-                    <div class="mb-4">  
-                        <label for="productDescription" class="form-label">Description</label>
-                        <textarea id="productDescription" name = "description" class="form-control" rows="5" placeholder="Description"></textarea>
-                    </div>
-                    <div class="mb-4">
-                        <label for="productQuantity">Quantity</label>
-                        <input id="productQuantity" name = "quantity" class="form-control" type="number" value="1" aria-label="quantityLabel">
-                    </div>
+                    
                     <div class="mb-4">
                         <label for="productPrice">Price</label>
-                        <input id="productPrice" name = "price" class="form-control" type="number" step="0.01" placeholder="00.00" aria-label="priceLabel">
+                        <input id="productPrice" name = "price" class="form-control" type="number" step="0.01" placeholder="00.00" aria-label="priceLabel" value = <?php echo $data['shampoo']->price?>>
                     </div>
                     <div>
                         <label for="productPicture">Picture</label>
@@ -45,7 +38,7 @@
                 </div>
                 
                 <div style="height: 40px;">
-                    <a href="http://localhost/SystemDevProject/Admin/addShampoo" type="button" class="btn btn-secondary" style="
+                    <a href="http://localhost/SystemDevProject/Admin/Shampoos type="button" class="btn btn-secondary" style="
                         float: left;
                         width: 150px;
                         height: 40px;
@@ -53,7 +46,7 @@
                         border: 1px solid #707070;
                         color: black;
                     ">Cancel</a>
-                    <button type="submit" name="Update Shampoo" class="btn btn-primary" style="
+                    <button type="submit" name="Update_Shampoo" class="btn btn-primary" style="
                         float: right;
                         width: 150px;
                         height: 40px;
@@ -63,6 +56,14 @@
                     ">Edit Shampoo</button>
                 </div>
             </form>
+            <?php
+                if(isset($data['error'])) {
+                    foreach($data['error'] as $error) {
+                        echo '<div class="alert alert-danger" role="alert">';
+                        echo $error;
+                        echo '</div>';}
+                }
+            ?>
         </div>
     </div>
 </body>

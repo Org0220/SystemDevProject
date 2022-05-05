@@ -18,7 +18,8 @@
             if (!is_admin_logged_in()) {
                 header('Location: ' . URLROOT);
             } else {
-                $this->read_shampoo('Admin/Shampoos', $this->ShampooModel->getShampoos());
+                $data['shampoos'] = $this->ShampooModel->getShampoos();
+                $this->read_shampoo('Admin/Shampoos', $data);
             }
         }
     
@@ -26,8 +27,9 @@
         {
             if (!is_admin_logged_in()) {
                 header('Location: ' . URLROOT);
-            } else if (!isset($_POST['Create Shampoo'])) {
-                header('Location: ' . URLROOT . '/news/create_shampoo');
+            } else if (!isset($_POST['Create_Shampoo'])) {
+                echo 'Button';
+                $this->view('Admin/addShampoo');
             } else {
                 $data = $this->validate_shampoo($_POST);
                 
@@ -37,9 +39,12 @@
                     $isSucc = $this->ShampooModel->create($data);
     
                     if ($isSucc) {
-                        $this->read_shampoo('Admin/Shampooss', ['msg' => 'Shampoo successfully created!']);
+                        $data['shampoos'] = $this->ShampooModel->getShampoos();
+                        $data['msg'] = 'Shampoo successfully created!';
+                        $this->read_shampoo('Admin/Shampoos', $data);
                     } else {
-                        $this->read_shampoo('Admin/addShampoo', ['error' => ['Error creating news!']]);
+                        $data['error'] = ['Error creating Shampoo!'];
+                        $this->read_shampoo('Admin/addShampoo', $data);
                     }
                 }
             }
@@ -47,10 +52,11 @@
     
         public function update_shampoo($shampoo_id)
         {
+            $data['shampoo'] = $this->ShampooModel->getShampoo($shampoo_id);
             if (!is_admin_logged_in()) {
                 header('Location: ' . URLROOT);
-            } else if (!isset($_POST['Update Shampoo'])) {
-                $this->view('Admin/editShampoo');
+            } else if (!isset($_POST['Update_Shampoo'])) {
+                $this->view('Admin/editShampoo', $data);
             } else {
                 $data = $this->validate_shampoo($_POST);
                 if (!empty($data['error'])) {
@@ -63,9 +69,12 @@
                     } else {
                         $isSucc = $this->ShampooModel->update($data);
                         if ($isSucc) {
-                            $this->read_shampoo('Admin/Shampoos', ['msg' => 'Shampoo successfully created!']);
+                            $data['shampoos'] = $this->ShampooModel->getShampoos();
+                            $data['msg'] = 'Shampoo successfully created!';
+                            $this->read_shampoo('Admin/Shampoos', $data);
                         } else {
-                            $this->read_shampoo('Admin/editShampoo', ['error' => ['Error creating news!']]);
+                            $data['error'] = ['Error creating Shampoo!'];
+                            $this->read_shampoo('Admin/editShampoo', $data);
                         }
                     }
                 }
@@ -96,18 +105,14 @@
         {
             $data = ['error' => []];
             $data['name'] = isset($raw_data['name']) ? trim($raw_data['name']) : '';
-            $data['price'] = isset($raw_data['price']) ? trim($raw_data['price']) : '';
-            $data['description'] = isset($raw_data['description']) ? trim($raw_data['description']) : '';
+            $data['price'] = isset($raw_data['price']) && is_numeric(trim($raw_data['price'])) ? trim($raw_data['price']) : '';
             $data['image_url'] = image_upload();
 
             if (!$data['name']) {
                 $data['error'][] = 'Name must not be empty!';
             }
-            if (is_numeric($data['price'])) {
+            if (!$data['price']) {
                 $data['error'][] = 'Price must be numeric!';
-            }
-            if (!$data['description']) {
-                $data['error'][] = 'Description must not be empty!';
             }
             if (!$data['image_url']) {
                 $data['error'][] = 'Image URL must not be empty!';
@@ -120,6 +125,8 @@
         {
             $prop = $isSucc ? 'msg' : 'error';
             $message = $isSucc ? $msg : $error;
+
+
 
             $this->view($view, [$prop => $message, 'shampoos' => $this->ShampooModel->getShampoos()]);
         }
