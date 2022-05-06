@@ -76,39 +76,20 @@
 
     <div class="container" style="
     width:100%;
-    height: 100%; 
+    height: auto; 
     text-align: center;
     margin-top: 50px;">
-        <h1 style="font: normal normal normal 40px/47px Lucida Fax;">Availabilities</h1>
 
-        <div class="left-side" style="width: 50%; margin-top: 5%; float:left;">
-            <h5 style="font: normal normal normal 45px Microsoft Yi Baiti;"> Choose availability</h5>
-            <form method="post" action="" style="margin-top: 30px;">
 
-                <label for="availability" style="float:left;">Date</label>
-                <input type="date" name="availability" class="form-control" id="availability ">
-
-                <label for="startTime" style="float:left; margin-top:20px;">Opening Time</label>
-                <input type="time" name="startTime" class="form-control" id="startTime" min="8:00" max="22:00" style="margin-top: 30px;">
-
-                <label for="endTime" style="float:left; margin-top:20px;">Closing Time</label>
-                <input type="time" name="endTime" class="form-control" id="endTime" style="margin-top: 30px;">
-                <button type="submit" class="btn btn-primary" name="addAvailability" style=" 
-                    float: left;
-                    margin-top: 30px;
-                    width: 150px;
-                    height: 40px;
-                    margin-right:5px;
-                    background-color: #F8C8DC;
-                    border: 1px solid #707070;
-                    border-radius: 12px;
-                    opacity: 1;">Add availability</button>
-
-            </form>
-
-        </div>
-
-        <div class="right-side" style="width: 50%; height: 80%;  float:left; overflow-y: scroll;">
+        <h4 class="card-title" style=" 
+        padding-bottom: 50px;
+        margin:auto;  
+        text-align: center;
+        font: normal normal normal 40px/47px Lucida Fax;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;">Availabilities</h4>
+        <form method="post" actions="">
             <div class="card" style="
             margin: auto;
             margin-top:50px;
@@ -119,21 +100,301 @@
             border-radius: 50px;
             opacity: 1;
             ">
-                <button type="button" style="border-radius:360px ; background-color:rgb(197, 56, 56); height:20px; width:20px; float:left; font-size: 10px; color:white">X</button>
+
                 <div class="card-body">
                     <h5 class="date" style=" margin:auto;  text-align: center;
                         font: normal normal normal 20px  Lucida Fax;
                         letter-spacing: 0px;
                         color: #000000;
-                        opacity: 1;">2022-05-05</h5>
-                    <h6 class="dayNTime" style=" margin:auto;  text-align: center;
-                        font: normal normal normal 15px Lucida Fax;
-                        letter-spacing: 0px;
-                        color: #000000; 
-                        opacity: 1;">Thursday: 8:00PM - 4:00PM</h6>
+                        opacity: 1;">Monday</h5>
+
+
+                    <div class="actions" style="height: 100%;">
+                        <label for="startTime" style="float:left; margin-top:20px; margin-right: 1%;">Opening Time</label>
+                        <input type="time" name="startTime" class="form-control" id="startTime" min="8:00" max="22:00" style="margin-top: 30px; width: 15%; float:left;">
+
+
+                        <label for="endTime" style=" float:left;  margin-top:20px; margin-left: 5%; margin-right: 1%;">Closing Time</label>
+                        <input type="time" name="endTime" class="form-control" id="endTime" style="margin-top: 30px; width: 15%; float:left; ">
+
+                        <input type="hidden" id="weekday" name="Monday" value="Monday">
+
+                        <!-- Use same button for delete. Just change name -->
+                        <button type="submit" class="btn btn-primary" name="addMonday" style=" 
+                    float: right;
+                    width: 150px;
+                    height: 40px;
+                    margin-right:5px;
+                    background-color: #F8C8DC;
+                    border: 1px solid #707070;
+                    border-radius: 12px;
+                    opacity: 1;">Add availability</button>
+
+                    </div>
+
                 </div>
             </div>
-        </div>
+
+            <div class="card" style="
+            margin: auto;
+            margin-top:50px;
+            width: 85%; 
+            height: auto;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            border: 1px solid #707070;
+            border-radius: 50px;
+            opacity: 1;
+            ">
+
+                <div class="card-body">
+                    <h5 class="date" style=" margin:auto;  text-align: center;
+                        font: normal normal normal 20px  Lucida Fax;
+                        letter-spacing: 0px;
+                        color: #000000;
+                        opacity: 1;">Tuesday</h5>
+
+
+                    <div class="actions" style="height: 100%;">
+                        <label for="startTime" style="float:left; margin-top:20px; margin-right: 1%;">Opening Time</label>
+                        <input type="time" name="startTime" class="form-control" id="startTime" min="8:00" max="22:00" style="margin-top: 30px; width: 15%; float:left;">
+
+                        <label for="endTime" style=" float:left;  margin-top:20px; margin-left: 5%; margin-right: 1%;">Closing Time</label>
+                        <input type="time" name="endTime" class="form-control" id="endTime" style="margin-top: 30px; width: 15%; float:left; ">
+
+                        <input type="hidden" id="weekday" name="Tuesday" value="Tuesday">
+
+                        <button type="submit" class="btn btn-primary" name="addTuesday" style=" 
+                    float: right;
+                    width: 150px;
+                    height: 40px;
+                    margin-right:5px;
+                    background-color: #F8C8DC;
+                    border: 1px solid #707070;
+                    border-radius: 12px;
+                    opacity: 1;">Add availability</button>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card" style="
+            margin: auto;
+            margin-top:50px;
+            width: 85%; 
+            height: auto;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            border: 1px solid #707070;
+            border-radius: 50px;
+            opacity: 1;
+            ">
+
+                <div class="card-body">
+                    <h5 class="date" style=" margin:auto;  text-align: center;
+                        font: normal normal normal 20px  Lucida Fax;
+                        letter-spacing: 0px;
+                        color: #000000;
+                        opacity: 1;">Wednesday</h5>
+
+
+                    <div class="actions" style="height: 100%;">
+                        <label for="startTime" style="float:left; margin-top:20px; margin-right: 1%;">Opening Time</label>
+                        <input type="time" name="startTime" class="form-control" id="startTime" min="8:00" max="22:00" style="margin-top: 30px; width: 15%; float:left;">
+
+                        <label for="endTime" style=" float:left;  margin-top:20px; margin-left: 5%; margin-right: 1%;">Closing Time</label>
+                        <input type="time" name="endTime" class="form-control" id="endTime" style="margin-top: 30px; width: 15%; float:left; ">
+
+                        <input type="hidden" id="weekday" name="Wednesday" value="Wednesday">
+
+                        <button type="submit" class="btn btn-primary" name="addWednesday" style=" 
+                    float: right;
+                    width: 150px;
+                    height: 40px;
+                    margin-right:5px;
+                    background-color: #F8C8DC;
+                    border: 1px solid #707070;
+                    border-radius: 12px;
+                    opacity: 1;">Add availability</button>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card" style="
+            margin: auto;
+            margin-top:50px;
+            width: 85%; 
+            height: auto;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            border: 1px solid #707070;
+            border-radius: 50px;
+            opacity: 1;
+            ">
+
+                <div class="card-body">
+                    <h5 class="date" style=" margin:auto;  text-align: center;
+                        font: normal normal normal 20px  Lucida Fax;
+                        letter-spacing: 0px;
+                        color: #000000;
+                        opacity: 1;">Thursday</h5>
+
+
+                    <div class="actions" style="height: 100%;">
+                        <label for="startTime" style="float:left; margin-top:20px; margin-right: 1%;">Opening Time</label>
+                        <input type="time" name="startTime" class="form-control" id="startTime" min="8:00" max="22:00" style="margin-top: 30px; width: 15%; float:left;">
+
+                        <label for="endTime" style=" float:left;  margin-top:20px; margin-left: 5%; margin-right: 1%;">Closing Time</label>
+                        <input type="time" name="endTime" class="form-control" id="endTime" style="margin-top: 30px; width: 15%; float:left; ">
+
+                        <input type="hidden" id="weekday" name="Thursday" value="Thursday">
+
+                        <button type="submit" class="btn btn-primary" name="addThursday" style=" 
+                    float: right;
+                    width: 150px;
+                    height: 40px;
+                    margin-right:5px;
+                    background-color: #F8C8DC;
+                    border: 1px solid #707070;
+                    border-radius: 12px;
+                    opacity: 1;">Add availability</button>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card" style="
+            margin: auto;
+            margin-top:50px;
+            width: 85%; 
+            height: auto;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            border: 1px solid #707070;
+            border-radius: 50px;
+            opacity: 1;
+            ">
+
+                <div class="card-body">
+                    <h5 class="date" style=" margin:auto;  text-align: center;
+                        font: normal normal normal 20px  Lucida Fax;
+                        letter-spacing: 0px;
+                        color: #000000;
+                        opacity: 1;">Friday</h5>
+
+
+                    <div class="actions" style="height: 100%;">
+                        <label for="startTime" style="float:left; margin-top:20px; margin-right: 1%;">Opening Time</label>
+                        <input type="time" name="startTime" class="form-control" id="startTime" min="8:00" max="22:00" style="margin-top: 30px; width: 15%; float:left;">
+
+                        <label for="endTime" style=" float:left;  margin-top:20px; margin-left: 5%; margin-right: 1%;">Closing Time</label>
+                        <input type="time" name="endTime" class="form-control" id="endTime" style="margin-top: 30px; width: 15%; float:left; ">
+
+                        <input type="hidden" id="weekday" name="Friday" value="Friday">
+
+                        <button type="submit" class="btn btn-primary" name="addFriday" style=" 
+                    float: right;
+                    width: 150px;
+                    height: 40px;
+                    margin-right:5px;
+                    background-color: #F8C8DC;
+                    border: 1px solid #707070;
+                    border-radius: 12px;
+                    opacity: 1;">Add availability</button>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card" style="
+            margin: auto;
+            margin-top:50px;
+            width: 85%; 
+            height: auto;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            border: 1px solid #707070;
+            border-radius: 50px;
+            opacity: 1;
+            ">
+
+                <div class="card-body">
+                    <h5 class="date" style=" margin:auto;  text-align: center;
+                        font: normal normal normal 20px  Lucida Fax;
+                        letter-spacing: 0px;
+                        color: #000000;
+                        opacity: 1;">Saturday</h5>
+
+
+                    <div class="actions" style="height: 100%;">
+                        <label for="startTime" style="float:left; margin-top:20px; margin-right: 1%;">Opening Time</label>
+                        <input type="time" name="startTime" class="form-control" id="startTime" min="8:00" max="22:00" style="margin-top: 30px; width: 15%; float:left;">
+
+                        <label for="endTime" style=" float:left;  margin-top:20px; margin-left: 5%; margin-right: 1%;">Closing Time</label>
+                        <input type="time" name="endTime" class="form-control" id="endTime" style="margin-top: 30px; width: 15%; float:left; ">
+
+                        <input type="hidden" id="weekday" name="Saturday" value="Saturday">
+
+                        <button type="submit" class="btn btn-primary" name="addSaturday" style=" 
+                    float: right;
+                    width: 150px;
+                    height: 40px;
+                    margin-right:5px;
+                    background-color: #F8C8DC;
+                    border: 1px solid #707070;
+                    border-radius: 12px;
+                    opacity: 1;">Add availability</button>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card" style="
+            margin: auto;
+            margin-top:50px;
+            width: 85%; 
+            height: auto;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            border: 1px solid #707070;
+            border-radius: 50px;
+            opacity: 1;
+            ">
+
+                <div class="card-body">
+                    <h5 class="date" style=" margin:auto;  text-align: center;
+                        font: normal normal normal 20px  Lucida Fax;
+                        letter-spacing: 0px;
+                        color: #000000;
+                        opacity: 1;">Sunday</h5>
+
+
+                    <div class="actions" style="height: 100%;">
+                        <label for="startTime" style="float:left; margin-top:20px; margin-right: 1%;">Opening Time</label>
+                        <input type="time" name="startTime" class="form-control" id="startTime" min="8:00" max="22:00" style="margin-top: 30px; width: 15%; float:left;">
+
+                        <label for="endTime" style=" float:left;  margin-top:20px; margin-left: 5%; margin-right: 1%;">Closing Time</label>
+                        <input type="time" name="endTime" class="form-control" id="endTime" style="margin-top: 30px; width: 15%; float:left; ">
+
+                        <input type="hidden" id="weekday" name="Sunday" value="Sunday">
+
+                        <button type="submit" class="btn btn-primary" name="addSunday" style=" 
+                    float: right;
+                    width: 150px;
+                    height: 40px;
+                    margin-right:5px;
+                    background-color: #F8C8DC;
+                    border: 1px solid #707070;
+                    border-radius: 12px;
+                    opacity: 1;">Add availability</button>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </form>
+
     </div>
 
 </body>
