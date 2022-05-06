@@ -1,6 +1,9 @@
 <div class="mb-3">
-  
+
+
+
     <div class="mb-3">
+        <!--Here is where the link should be for the payment part-->
             <a role="button"  href = "/SystemDevProject/[Controller]/[Method]/ <?php echo $time;?> " class="btn btn-primary" style="
                 width: 250px;
                 height: 40px;

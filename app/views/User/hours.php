@@ -1,4 +1,4 @@
-<?php require APPROOT . '/views/includes/headerAdmin.php';
+<?php require APPROOT . '/views/includes/headerUser.php';
 ?>
 <div class="container" style=" margin: auto; margin-top: 5%; height: auto; text-align: center;">
     <h4 class="card-title" style=" 

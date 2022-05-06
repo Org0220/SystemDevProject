@@ -1,4 +1,4 @@
-<?php require APPROOT . '/views/includes/headerAdmin.php'; 
+<?php require APPROOT . '/views/includes/headerUser.php'; 
 ?>
 
 <style>
