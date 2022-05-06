@@ -17,7 +17,8 @@ class Showcase extends Controller
         if (!is_admin_logged_in()) {
             header('Location: ' . URLROOT);
         } else {
-            $this->read_showcase('Admin/Gallery', []);
+            $data = $this->get_session_messages($_SESSION);
+            $this->read_showcase('Admin/Gallery', $data);
         }
     }
 
@@ -33,11 +34,9 @@ class Showcase extends Controller
                 $this->view('Admin/addShowCase', $data);
             } else {
                 $isSucc = $this->showcase_model->create($data);
-                $this->view_selector(
-                    $isSucc,
-                    'Showcase successfully created!',
-                    'Error creating showcase!'
-                );
+                $this->set_session_messages($isSucc, 'Showcase successfully created!', 'Error creating showcase!');
+
+                $this->go_showcase_main();
             }
         }
     }
@@ -55,11 +54,9 @@ class Showcase extends Controller
             } else {
                 $data['id'] = $showcase_id; // Maybe check if it's a number
                 $isSucc = $this->showcase_model->update($data);
-                $this->view_selector(
-                    $isSucc,
-                    'Showcase ' . $showcase_id . ' successfully edited!',
-                    'Error editing showcase ' . $showcase_id
-                );
+                $this->set_session_messages($isSucc, 'Showcase ' . $showcase_id . ' successfully edited!', ['Error editing showcase ' . $showcase_id]);
+
+                $this->go_showcase_main();
             }
         }
     }
@@ -71,41 +68,36 @@ class Showcase extends Controller
         } else {
             $data['id'] = $showcase_id;
             $isSucc = $this->showcase_model->delete($data);
-            $this->view_selector(
-                $isSucc,
-                'Showcase ' . $showcase_id . ' successfully deleted!',
-                'Error deleting showcase ' . $showcase_id
-            );
+            $this->set_session_messages($isSucc, 'Showcase ' . $showcase_id . ' successfully deleted!', ['Error deleting showcase ' . $showcase_id]);
+
+            $this->go_showcase_main();
         }
     }
 
-    private function read_showcase($view, $data)
+    private function read_showcase($user_type, $data)
     {
         $data['showcase'] = $this->showcase_model->get();
-        $this->view($view, $data);
+        $this->view($user_type . '/Gallery', $data);
     }
 
     private function validate_showcase($raw_data)
     {
         $data = ['error' => []];
         $data['title'] = isset($raw_data['title']) ? trim($raw_data['title']) : '';
-        $data['image_url'] = image_upload();
+        $data['image_url'] = isset($raw_data['image_url']) ? trim($raw_data['image_url']) : '';
 
         if (!$data['title']) {
             $data['error'][] = 'Title must not be empty!';
         }
         if (!$data['image_url']) {
-            $data['error'][] = 'Image uploaded must be of type jpeg, gif, or png';
+            $data['error'][] = 'Image URL must not be empty';
         }
 
         return $data;
     }
 
-    private function view_selector($isSucc, $msg, $error)
+    private function go_showcase_main()
     {
-        $prop = $isSucc ? 'msg' : 'error';
-        $message = $isSucc ? $msg : $error;
-
-        $this->view('Admin/Gallery', [$prop => $message]);
+        header('Location: ' . URLROOT . '/showcase/admin_showcase');
     }
 }

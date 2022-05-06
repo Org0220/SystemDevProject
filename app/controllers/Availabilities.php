@@ -4,9 +4,9 @@ class Availabilities extends Controller
 {
 
     private static $DAYS_OF_THE_WEEK = [
-        'Monday', 'Tuesday', 'Wednesday',
-        'Thursday', 'Friday', 'Saturday',
-        'Sunday'
+        'Sunday', 'Monday', 'Tuesday',
+        'Wednesday', 'Thursday', 'Friday',
+        'Saturday'
     ];
 
     public function __construct()
@@ -16,7 +16,12 @@ class Availabilities extends Controller
 
     public function index()
     {
+        if (!is_admin_logged_in()) {
         header('Location: ' . URLROOT);
+        } else {
+            $data = $this->get_session_messages($_SESSION);
+            $this->view('Admin/Availabilities', $data);
+        }
     }
 
     public function create_availabilities()
@@ -24,21 +29,18 @@ class Availabilities extends Controller
         if (!is_admin_logged_in()) {
             header('Location: ' . URLROOT);
         } else if (!isset($_POST['Create Availability'])) {
-            $this->view('[INSERT VIEW NAME HERE]');
+            $this->go_avail_main();
         } else {
             $data = $this->validate_availabilities($_POST);
 
             if (!empty($data['error'])) {
-                $this->view('[INSERT VIEW NAME HERE]', $data);
+                $this->set_session_messages(false, null, $data['error']);
             } else {
                 $isSucc = $this->avail_model->create($data);
-
-                $this->view_selector(
-                    $isSucc,
-                    'Availability successfully created!',
-                    'Error creating availability'
-                );
+                $this->set_session_messages($isSucc, 'Availability successfully created!', 'Error creating availability!');
             }
+
+            $this->go_avail_main();
         }
     }
 
@@ -47,21 +49,16 @@ class Availabilities extends Controller
         if (!is_admin_logged_in()) {
             header('Location: ' . URLROOT);
         } else if (!isset($_POST['Edit Availability'])) {
-            $this->view('[INSERT VIEW NAME HERE]');
+            $this->go_avail_main();
         } else {
             $data = $this->validate_availabilities($_POST);
 
             if (!empty($data['error'])) {
-                $this->view('[INSERT VIEW NAME HERE]', $data);
+                $this->set_session_messages(false, null, $data['error']);
             } else {
                 $data['id'] = $avail_id;
                 $isSucc = $this->avail_model->update($data);
-
-                $this->view_selector(
-                    $isSucc,
-                    'Availability ' . $avail_id . 'successfully edited!',
-                    'Error editing availability ' . $avail_id
-                );
+                $this->set_session_messages($isSucc, 'Availability ' . $avail_id . ' successfully edited!', 'Error editing availability ' . $avail_id);
             }
         }
     }
@@ -73,12 +70,7 @@ class Availabilities extends Controller
         } else {
             $data = ['id' => $avail_id];
             $isSucc = $this->avail_model->delete($data);
-
-            $this->view_selector(
-                $isSucc,
-                'Availability ' . $avail_id . ' successfully deleted!',
-                'Error deleting availability ' . $avail_id
-            );
+            $this->set_session_messages($isSucc, 'Availability ' . $avail_id . ' successfully deleted!', 'Error deleting availability ' . $avail_id);
         }
     }
 
@@ -88,11 +80,11 @@ class Availabilities extends Controller
         $time_regex = '/(([0-1](?=[0-9]))|(2(?=[0-3])))[0-9]:[0-5][0-9]/';
 
         $data = ['error' => []];
-        $data['day'] = isset($raw_data['day']) ? $raw_data['day'] : '';
+        $data['day'] = isset($raw_data['day']) ? array_search($raw_data['day'], Availabilities::$DAYS_OF_THE_WEEK) : '';
         $data['start'] = isset($raw_data['start']) ? $raw_data['start'] : '';
         $data['end'] = isset($raw_data['end']) ? $raw_data['end'] : '';
 
-        if (!$data['day'] || !in_array($data['day'], Availabilities::$DAYS_OF_THE_WEEK)) {
+        if (!$data['day']) {
             $data['error'][] = 'Day must be a day of the week!';
         }
         if (preg_match($time_regex, $data['start']) != 1) {
@@ -105,10 +97,8 @@ class Availabilities extends Controller
         return $data;
     }
 
-    private function view_selector($isSucc, $msg, $error)
+    private function go_avail_main()
     {
-        $prop = $isSucc ? 'msg' : 'error';
-        $message = $isSucc ? $msg : $error;
-        $this->view('[INSERT VIEW PATH HERE]', [$prop => $message]);
+        header('Location: ' . URLROOT . '/availabilities');
     }
 }

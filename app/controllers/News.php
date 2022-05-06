@@ -9,7 +9,7 @@ class News extends Controller
 
     public function index()
     {
-        $this->read_news('User/News', []);
+        $this->read_news('User', []);
     }
 
     public function admin_news()
@@ -17,7 +17,8 @@ class News extends Controller
         if (!is_admin_logged_in()) {
             header('Location: ' . URLROOT);
         } else {
-            $this->read_news('Admin/News', []);
+            $data = $this->get_session_messages($_SESSION);
+            $this->read_news('Admin', $data);
         }
     }
 
@@ -30,15 +31,12 @@ class News extends Controller
         } else {
             $data = $this->validate_news($_POST);
             if (!empty($data['error'])) {
-                $this->read_news('Admin/addNews', $data);
+                $this->view('Admin/addNews', $data);
             } else {
                 $isSucc = $this->news_model->create($data);
+                $this->set_session_messages($isSucc, 'News successfully created!', ['Error creating news!']);
 
-                $this->view_selector(
-                    $isSucc,
-                    'News successfully created!',
-                    'Error creating news!'
-                );
+                $this->go_news_main();
             }
         }
     }
@@ -56,15 +54,23 @@ class News extends Controller
             } else {
                 $data['id'] = $news_id; // maybe check if news_id is a number?
                 $isSucc = $this->news_model->update($data);
-                $this->view_selector(
-                    $isSucc,
-                    'News ' . $news_id . ' successfully edited!',
-                    'Error updating news ' . $news_id
-                );
+                $this->set_session_messages($isSucc, 'News ' . $news_id . ' successfully edited!', ['Error updating news ' . $news_id]);
+
+                $this->go_news_main();
             }
         }
     }
 
+    /**
+     * Handler for deleting news
+     * 
+     * 1. If the admin IS NOT logged in, goes back to the main home page.
+     * 2. If the admin IS logged in, then:
+     *      2a. Query the database for deleting the given news_id
+     *          2ai. If there ARE NO database errors, set the success message in the session.
+     *          2aii. If there ARE database errors, set the failure messagei in the session.
+     *      2b. Go back to the main news page for displaying the session DB messages.
+     */
     public function delete_news($news_id)
     {
         if (!is_admin_logged_in()) {
@@ -72,18 +78,16 @@ class News extends Controller
         } else {
             $data = ['id' => $news_id]; // maybe check if news_id is a number?
             $isSucc = $this->news_model->delete($data);
-            $this->view_selector(
-                $isSucc,
-                'News ' . $news_id . ' successfully deleted!',
-                'Error deleting news ' . $news_id
-            );
+            $this->set_session_messages($isSucc, 'News ' . $news_id . ' successfully deleted!', ['Error deleting news ' . $news_id]);
+
+            $this->go_news_main();
         }
     }
 
-    private function read_news($view_name, $data)
+    private function read_news($user_type, $data)
     {
         $data['news'] = $this->news_model->get();
-        $this->view($view_name, $data);
+        $this->view($user_type . '/News', $data);
     }
 
     private function validate_news($raw_data)
@@ -102,10 +106,8 @@ class News extends Controller
         return $data;
     }
 
-    private function view_selector($isSucc, $msg, $error)
+    private function go_news_main()
     {
-        $prop = $isSucc ? 'msg' : 'error';
-        $message = $isSucc ? $msg : $error;
-        $this->view('Admin/News', [$prop => $message]);
+        header('Location: ' . URLROOT . '/news/admin_news');
     }
 }
