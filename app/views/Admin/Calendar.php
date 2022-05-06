@@ -99,6 +99,7 @@
 
 
 <script>
+    var currentDatePassed = false;
     var selectedDate = new Date();
     document.getElementById("calendar").innerHTML = createCalendar(selectedDate);
 
@@ -227,8 +228,12 @@
 
             // add class to highlight current date
             if (i === currentDate.getDate() && calDate.getMonth() === currentDate.getMonth() && calDate.getFullYear() === currentDate.getFullYear()) {
+                currentDatePassed = true;
                 htmlCode += "<td class='calendar_dates' id='calendar_today'><a href = '/SystemDevProject/Appointments/hours/" + i + "/" + month + "/" + year + "'>" + i + "</a></td>";
             } 
+            else if (currentDatePassed) {
+                htmlCode += "<td class='calendar_dates'><a href = '/SystemDevProject/Appointments/hours/" + i + "/" + month + "/" + year + "'>" + i + "</a></td>";
+            }
             else {
                 htmlCode += "<td class='calendar_dates'><a href = '/SystemDevProject/Appointments/hours/" + i + "/" + month + "/" + year + "'>" + i + "</a></td>";
             }

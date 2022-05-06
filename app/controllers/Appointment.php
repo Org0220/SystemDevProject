@@ -5,6 +5,8 @@
         public function __construct()
         {
             $this->ServiceModel = $this->model('ServiceModel');
+            $this->AppointmentModel = $this->model('AppointmentModel');
+            $this->AvailabilitiesModel = $this->model('AvailabilitiesModel');
         }
 
 
@@ -22,18 +24,24 @@
             $this->view('User/calendar');
         }
 
-        public function hours($day, $month, $year)
+        public function hours($day, $month, $year, $weekDay)
         {
             $data = [
                 `endHour` => 22
             ];
             $_SESSION['date'] = $day . '/' . $month . '/' . $year;
+            $_SESSION['weekDay'] = $weekDay;
+            
             $data['hour'] = 7;
             $data['minute'] = 0;  
             $data['duration'] = $this->ServiceModel->getService( $_SESSION['service_id'])->duration;
-
+            // $data['availbilities'] = $this->AvailabilitiesModel->getAvailbilities();
+            $data['appointments'] = $this->AppointmentModel->getAppointmentByDate($_SESSION['date']);
+            
             $this->read_service('User/hours',  $data);
         }
+
+
         
         public function admin_services()
         {

@@ -5,18 +5,24 @@
             $this->db = new Model;
         }
         public function getAppointments(){
-            $this->db->query("SELECT * FROM users");
+            $this->db->query("SELECT * FROM appointment");
             return $this->db->getResultSet();
         }
 
         public function getAppointment($user_id){
-            $this->db->query("SELECT * FROM users WHERE ID = :user_id");
+            $this->db->query("SELECT * FROM appointment WHERE ID = :user_id");
             $this->db->bind(':user_id',$user_id);
             return $this->db->getSingle();
         }
 
+        public function getAppointmentByDate($date){
+            $this->db->query("SELECT * FROM appointment WHERE date = :date");
+            $this->db->bind(':date',$date);
+            return $this->db->getResultSet();
+        }
+
         public function create($data){
-            $this->db->query("INSERT INTO service (date, time, client_id, service_id) values (:date, :time, :client_id, :service_id)");
+            $this->db->query("INSERT INTO appointment (date, time, client_id, service_id) values (:date, :time, :client_id, :service_id)");
             $this->db->bind(':date', $data['date']);
             $this->db->bind(':time', $data['time']);
             $this->db->bind(':client_id', $data['client_id']);
@@ -33,7 +39,7 @@
         }
 
         public function update($data){
-            $this->db->query("UPDATE service SET date=:date, time=:time, client_id=:client_id, service_id=:service_id WHERE id=:id");
+            $this->db->query("UPDATE appointment SET date=:date, time=:time, client_id=:client_id, service_id=:service_id WHERE id=:id");
             $this->db->bind(':date', $data['date']);
             $this->db->bind(':time', $data['time']);
             $this->db->bind(':client_id', $data['client_id']);
@@ -48,7 +54,7 @@
             
         }
         public function delete($id){
-            $this->db->query("DELETE FROM service WHERE id=:id");
+            $this->db->query("DELETE FROM appointment WHERE id=:id");
             $this->db->bind('id', $id);
 
             if($this->db->execute()){

@@ -100,8 +100,9 @@
 
 <script>
     var selectedDate = new Date();
+    var currentDatePassed = false;
     document.getElementById("calendar").innerHTML = createCalendar(selectedDate);
-
+    
     document.getElementById('nextMonth').onclick = function() {
         // adding a month to the date
         var month = selectedDate.getMonth() + 1;
@@ -215,7 +216,11 @@
 
         //today's date, to highlight
         var currentDate = new Date();
-
+        if ( (currentDate.getFullYear() < year) || (currentDate.getMonth() < month && currentDate.getFullYear() == year)) {
+            currentDatePassed = true;
+        } else {
+            currentDatePassed = false;
+        }
         for (var i = 1; i <= totalDays; i++) {
             day.setDate(i);
             weekDay = day.getDay();
@@ -227,11 +232,14 @@
 
             // add class to highlight current date
             if (i === currentDate.getDate() && calDate.getMonth() === currentDate.getMonth() && calDate.getFullYear() === currentDate.getFullYear()) {
-                htmlCode += "<td class='calendar_dates' id='calendar_today'><a class = 'btn' role ='button' href = '/SystemDevProject/Appointments/hours/" + i + "/" + month + "/" + year +"'>" + i + "</a></td>";
-            } 
-            else {
-                htmlCode += "<td class='calendar_dates '><a class = 'btn' role ='button''href = '/SystemDevProject/Appointments/hours/" + i + "/" + month + "/" + year + "'>" + i + "</a></td>";
-            }
+                currentDatePassed = true;
+                htmlCode += "<td class='calendar_dates' id='calendar_today'><a class = 'btn' role ='button' href = '/SystemDevProject/Appointment/hours/" + i + "/" + month + "/" + year + "/" + weekDay +"'>" + i + "</a></td>";
+            } else if (currentDatePassed) {
+                htmlCode += "<td class='calendar_dates '><a class = 'btn' role ='button'href = '/SystemDevProject/Appointment/hours/" + i + "/" + month + "/" + year + "/" + weekDay + "'>" + i + "</a></td>";
+             } 
+             else {
+                 htmlCode += "<td class='calendar_dates' style = 'background: gray;'><a class = 'btn' role ='button'>" + i + "</a></td>";
+             }
         
             // if Saturday, then end the table row
             if (weekDay === 6) htmlCode += "</tr>";
