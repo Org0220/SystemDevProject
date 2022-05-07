@@ -9,7 +9,7 @@ class AvailabilitiesModel extends Model
 
     public function get()
     {
-        $this->query('SELECT * FROM availabilities');
+        $this->query('SELECT * FROM availabilities ORDER BY day ASC');
         return $this->getResultSet();
     }
 
