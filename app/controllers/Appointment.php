@@ -12,9 +12,6 @@
 
         public function index()
         {
-            
-            
-
             $this->read_service('User/Services',  $this->ServiceModel->getServices());
         }
 
@@ -35,7 +32,7 @@
             $data['hour'] = 7;
             $data['minute'] = 0;  
             $data['duration'] = $this->ServiceModel->getService( $_SESSION['service_id'])->duration;
-            // $data['availbilities'] = $this->AvailabilitiesModel->getAvailbilities();
+            $data['availbilities'] = $this->AvailabilitiesModel->getByDate($_SESSION['weekDay']);
             $data['appointments'] = $this->AppointmentModel->getAppointmentByDate($_SESSION['date']);
             
             $this->read_service('User/hours',  $data);

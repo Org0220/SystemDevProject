@@ -9,8 +9,17 @@
 
 
         public function index()
+        {  
+            if(isset($_SESSION['combo'])) {
+                unset($_SESSION['combo']);
+            }
+            $this->read_service('User/Services',  $this->ServiceModel->getServices());
+        }
+
+        public function anotherService()
         {
-                $this->read_service('User/Services',  $this->ServiceModel->getServices());
+            $_SESSION['combo'] = true;
+            $this->read_service('User/AnotherService',  $this->ServiceModel->getServices());
         }
     
         public function admin_services()

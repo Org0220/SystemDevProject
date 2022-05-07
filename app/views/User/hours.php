@@ -28,7 +28,7 @@
         $parts = explode(':', $appointment->time);
 
         $hour = intval($parts[0], 10);
-        $minute = intval($parts[1], 10) + $data['duration'];
+        $minute = intval($parts[1], 10) + $appointment->duration;
         if ($minute >= 60) {
             $minute -= 60;
             $hour++;
@@ -41,9 +41,29 @@
         $endTime = $hour . ':' . $minute;
         array_push($apEndHours,  $endTime);
     }
-    
+
+    foreach ($data['appointments'] as $appointment) {
+        array_push($apStartHours, $appointment->time);
+
+        $parts = explode(':', $appointment->time);
+
+        $hour = intval($parts[0], 10);
+        $minute = intval($parts[1], 10) + $appointment->duration;
+        if ($minute >= 60) {
+            $minute -= 60;
+            $hour++;
+        }
+        // if the minutes is 5, it will become 05 in the output
+        if ($minute < 10) {
+            $minute = '0' . $minute;
+        }
+        $minute = floor($minute);
+        $endTime = $hour . ':' . $minute;
+        array_push($apEndHours,  $endTime);
+    }
+
     for ($i = intdiv(900, $data['duration']); $i > 0; $i--) {
-        
+
         $startMinute = $data['minute'];
         $startHour = $data['hour'];
         $endMinute = $data['minute'] + $data['duration'];
@@ -60,19 +80,33 @@
         } else {
             $time =  $startHour . ":" . $startMinute;
         }
-        
-        $isAvailable = true;
-        for($y = 0; $y < count($apStartHours); $y++) {
-            if(isTimeBigger( $startHour.':'.$startMinute, $apStartHours[$y]) && !isTimeBigger($time, $apEndHours[$y])) {
-                $isAvailable = false;
+
+
+
+        foreach ($data['availbilities'] as $availability) {
+            $isAvailable = false; //
+            if (isTimeBigger($startHour . ':' . $startMinute, $availability->start) && !isTimeBigger($time, $availability->end)) {
+                $isAvailable = true;
+            }
+            if ($isAvailable) {
                 
-        }}
-        if( $isAvailable )
-            require APPROOT . '/views/Divs/HourDiv.php';
+                for ($y = 0; $y < count($apStartHours); $y++) {
+                    if (isTimeBigger($startHour . ':' . $startMinute, $apStartHours[$y]) && !isTimeBigger($time, $apEndHours[$y])) {
+                        $isAvailable = false;
+                        if (!$isAvailable)
+                            break;
+                    }
+                }
+                
+            }
+            if ($isAvailable) {
+                require APPROOT . '/views/Divs/HourDiv.php';
+            }
+            
+        }
+
         
-        
-    
-}
+    }
 
     // returns true if the $time1 > $time2 and false otherwise
     function isTimeBigger($time1, $time2)
