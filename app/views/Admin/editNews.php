@@ -22,21 +22,29 @@
         color: #000000;
         opacity: 1;">Newsletter</h5>
 
+        <?php if (isset($data['error'])): ?>
+        <?php foreach ($data['error'] as $error): ?>
+            <div class="alert alert-danger" role="alert">
+                <?= $error ?>
+            </div>
+        <?php endforeach; ?>
+        <?php endif; ?>
+
         <div style="margin-top: 50px;">
-            <form action='' method='post' enctype="multipart/form-data">
+            <form action='<?= URLROOT ?>/news/update_news/<?= $data['news']->id ?>' method='post'>
                 <div class="mb-5">
                     <div class="mb-4">
                         <label for="newsletterTitle">Title</label>
-                        <input id="newsletterTitle" name = "title" class="form-control" type="text" aria-label="titleLabel">
+                        <input id="newsletterTitle" name = "title" class="form-control" type="text" aria-label="titleLabel" value="<?= $data['news']->title ?>">
                     </div>
                     <div class="mb-4">  
                         <label for="newsletterDescription" class="form-label">Content</label>
-                        <textarea id="newsletterDescription" name = "description" class="form-control" rows="4"></textarea>
+                        <textarea id="newsletterDescription" name = "description" class="form-control" rows="4"><?= $data['news']->content ?></textarea>
                     </div>
                 </div>
                 
                 <div style="height: 40px;">
-                    <a href="AdminProducts.html" type="button" class="btn btn-secondary" style="
+                    <a href="<?= URLROOT ?>/news/admin_news" class="btn btn-secondary" style="
                         float: left;
                         width: 150px;
                         height: 40px;

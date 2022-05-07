@@ -60,6 +60,8 @@ class Availabilities extends Controller
                 $isSucc = $this->avail_model->update($data);
                 $this->set_session_messages($isSucc, 'Availability ' . $avail_id . ' successfully edited!', 'Error editing availability ' . $avail_id);
             }
+
+            $this->go_avail_main();
         }
     }
 
@@ -71,6 +73,8 @@ class Availabilities extends Controller
             $data = ['id' => $avail_id];
             $isSucc = $this->avail_model->delete($data);
             $this->set_session_messages($isSucc, 'Availability ' . $avail_id . ' successfully deleted!', 'Error deleting availability ' . $avail_id);
+
+            $this->go_avail_main();
         }
     }
 

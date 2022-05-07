@@ -42,7 +42,7 @@
         <!-- 3 column grid -->
         <div class="row row-cols-3">
 
-            
+        
 
         </div>
     </div>

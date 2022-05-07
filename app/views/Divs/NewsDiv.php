@@ -14,12 +14,12 @@
                  font: normal normal normal 40px/47px Lucida Fax;
                  letter-spacing: 0px;
                  color: #000000;
-                 opacity: 1;">Title</h5>
+                 opacity: 1;"><?= $news->title ?></h5>
                  <h6 class="card-title" style=" margin:auto;  text-align: center;
                  font: normal normal normal 15px Lucida Fax;
                  letter-spacing: 0px;
                  color: #000000;
-                 opacity: 1;">4/13/2022</h6>
+                 opacity: 1;"><?= $news->date ?></h6>
 
 
             </div>
@@ -27,9 +27,7 @@
             <div class="second-row" style="float: left; width:100%; height:150px;">
         
                 <h6 style="margin-left: auto; margin-right:auto; width:80%; margin-top: 15px;">Description</h6>
-                <p style="margin-left: auto; margin-right:auto; width:80%; margin-top: 15px; ">Description: Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, 
-                    but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                <p style="margin-left: auto; margin-right:auto; width:80%; margin-top: 15px; "><?= $news->content ?></p>
             </div>
             <!-- div for signature -->
             <div class="third-row" style="float:right; width:100%; height:auto; ">
