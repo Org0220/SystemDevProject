@@ -9,7 +9,7 @@ class Showcase extends Controller
 
     public function index()
     {
-        $this->read_showcase('User/Gallery', []);
+        $this->read_showcase('User', []);
     }
 
     public function admin_showcases()
@@ -18,7 +18,7 @@ class Showcase extends Controller
             header('Location: ' . URLROOT);
         } else {
             $data = $this->get_session_messages($_SESSION);
-            $this->read_showcase('Admin/Gallery', $data);
+            $this->read_showcase('Admin', $data);
         }
     }
 
@@ -84,13 +84,13 @@ class Showcase extends Controller
     {
         $data = ['error' => []];
         $data['title'] = isset($raw_data['title']) ? trim($raw_data['title']) : '';
-        $data['image_url'] = isset($raw_data['image_url']) ? trim($raw_data['image_url']) : '';
+        $data['image_url'] = image_upload();
 
         if (!$data['title']) {
             $data['error'][] = 'Title must not be empty!';
         }
         if (!$data['image_url']) {
-            $data['error'][] = 'Image URL must not be empty';
+            $data['error'][] = 'Image must be JPG, GIF, or PNG!';
         }
 
         return $data;

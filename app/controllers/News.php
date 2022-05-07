@@ -26,7 +26,7 @@ class News extends Controller
     {
         if (!is_admin_logged_in()) {
             header('Location: ' . URLROOT);
-        } else if (!isset($_POST['Create News'])) {
+        } else if (!isset($_POST['Create_News'])) {
             $this->view('Admin/addNews');
         } else {
             $data = $this->validate_news($_POST);
@@ -43,12 +43,14 @@ class News extends Controller
 
     public function update_news($news_id)
     {
+        $news = $this->news_model->get_single($news_id);
         if (!is_admin_logged_in()) {
             header('Location: ' . URLROOT);
-        } else if (!isset($_POST['Update News'])) {
-            $this->view('Admin/editNews');
+        } else if (!isset($_POST['Update_News'])) {
+            $this->view('Admin/editNews', ['news' => $news]);
         } else {
             $data = $this->validate_news($_POST);
+            $data['news'] = $news;
             if (!empty($data['error'])) {
                 $this->view('Admin/editNews', $data);
             } else {
@@ -61,17 +63,7 @@ class News extends Controller
         }
     }
 
-    /**
-     * Handler for deleting news
-     * 
-     * 1. If the admin IS NOT logged in, goes back to the main home page.
-     * 2. If the admin IS logged in, then:
-     *      2a. Query the database for deleting the given news_id
-     *          2ai. If there ARE NO database errors, set the success message in the session.
-     *          2aii. If there ARE database errors, set the failure messagei in the session.
-     *      2b. Go back to the main news page for displaying the session DB messages.
-     */
-    public function delete_news($news_id)
+    public function delete_news($news_id = null)
     {
         if (!is_admin_logged_in()) {
             header('Location: ' . URLROOT);
@@ -94,7 +86,7 @@ class News extends Controller
     {
         $data = ['error' => []];
         $data['title'] = isset($raw_data['title']) ? trim($raw_data['title']) : '';
-        $data['content'] = isset($raw_data['content']) ? trim($raw_data['content']) : '';
+        $data['description'] = isset($raw_data['description']) ? trim($raw_data['description']) : '';
 
         if (!$data['title']) {
             $data['error'][] = 'Title must not be empty!';

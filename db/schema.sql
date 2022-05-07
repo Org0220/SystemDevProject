@@ -34,7 +34,7 @@ CREATE TABLE `news` (
 
 CREATE TABLE `availabilities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `day` text NOT NULL,
+  `day` int(11) NOT NULL,
   `start` text NOT NULL,
   `end` text NOT NULL,
   PRIMARY KEY (`id`)
