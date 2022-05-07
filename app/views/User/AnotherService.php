@@ -9,7 +9,7 @@
         <?php 
             
             foreach ($data as $service){
-                require APPROOT . '/views/User/ServiceDiv.php';
+                require APPROOT . '/views/Divs/ServiceDiv.php';
                  
             }
 

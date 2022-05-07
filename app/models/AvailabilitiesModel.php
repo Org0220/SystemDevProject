@@ -12,6 +12,13 @@ class AvailabilitiesModel extends Model
         $this->query('SELECT * FROM availabilities');
         return $this->getResultSet();
     }
+
+    public function getByDate($day)
+    {
+        $this->query('SELECT * FROM availabilities WHERE day = :day');
+        $this->bind('day', $day);
+        return $this->getResultSet();
+    }
     
     public function create($data)
     {

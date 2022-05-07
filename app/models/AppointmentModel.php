@@ -15,8 +15,12 @@
             return $this->db->getSingle();
         }
 
+        
+
         public function getAppointmentByDate($date){
-            $this->db->query("SELECT * FROM appointment WHERE date = :date");
+            $this->db->query("SELECT appointment.id, appointment.date, appointment.time, service.duration
+            FROM appointment
+            INNER JOIN service ON service.id= appointment.service_id WHERE date = :date");
             $this->db->bind(':date',$date);
             return $this->db->getResultSet();
         }
