@@ -12,6 +12,13 @@ class ShowCaseModel extends Model
         return $this->getResultSet();
     }
 
+    public function get_single($showcase_id)
+    {
+        $this->query('SELECT * FROM show_case WHERE id = :showcase_id');
+        $this->bind('showcase_id', $showcase_id);
+        return $this->getSingle();
+    }
+
     public function create($data)
     {
         $this->query('INSERT INTO show_case (title, image_url) VALUES (:title, :image_url)');

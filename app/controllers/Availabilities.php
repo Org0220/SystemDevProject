@@ -1,4 +1,4 @@
-<?
+<?php
 
 class Availabilities extends Controller
 {

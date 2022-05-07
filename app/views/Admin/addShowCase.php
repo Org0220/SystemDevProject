@@ -31,9 +31,19 @@
         color: #000000;
         opacity: 1;">Gallery</h4>
 
+        <?php if (isset($data['error'])): ?>
+        <div class="errors">
+            <?php foreach($data['error'] as $error): ?>
+            <div class="alert alert-danger" role="alert">
+                <?= $error ?>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        <?php endif; ?>
+
         <div style="margin-top: 50px;">
 
-            <form action='' method='post' enctype="multipart/form-data">
+            <form action='<?= URLROOT ?>/showcase/create_showcase' method='post' enctype="multipart/form-data">
                 
                 <img id="preview" class="img" src="Example.PNG">
 
@@ -62,7 +72,7 @@
                 </script>
 
                 <div style="height: 40px;">
-                    <a href="AdminGallery.html" type="button" class="btn btn-secondary" style="
+                    <a href="<?= URLROOT ?>/showcase/admin_showcases" type="button" class="btn btn-secondary" style="
                         float: left;
                         width: 150px;
                         height: 40px;

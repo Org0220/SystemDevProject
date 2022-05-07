@@ -26,7 +26,7 @@ class Showcase extends Controller
     {
         if (!is_admin_logged_in()) {
             header('Location: ' . URLROOT);
-        } else if (!isset($_POST['Create Showcase'])) {
+        } else if (!isset($_POST['Create_Showcase'])) {
             $this->view('Admin/addShowCase');
         } else {
             $data = $this->validate_showcase($_POST);
@@ -43,15 +43,20 @@ class Showcase extends Controller
 
     public function update_showcase($showcase_id)
     {
+        $showcase = $this->showcase_model->get_single($showcase_id);
         if (!is_admin_logged_in()) {
             header('Location: ' . URLROOT);
-        } else if (!isset($_POST['Update Showcase'])) {
-            $this->view('Admin/editShowCase');
+        } else if (!isset($_POST['Update_Showcase'])) {
+            $this->view('Admin/editShowCase', ['showcase' => $showcase]);
         } else {
-            $data = $this->validate_showcase($_POST);
+            $data = $this->validate_update($_POST);
+            $data['showcase'] = $showcase;
             if (!empty($data['error'])) {
                 $this->view('Admin/editShowCase', $data);
             } else {
+                if (!$data['is_image_set']) {
+                    $data['image_url'] = $showcase->image_url;
+                }
                 $data['id'] = $showcase_id; // Maybe check if it's a number
                 $isSucc = $this->showcase_model->update($data);
                 $this->set_session_messages($isSucc, 'Showcase ' . $showcase_id . ' successfully edited!', ['Error editing showcase ' . $showcase_id]);
@@ -76,7 +81,7 @@ class Showcase extends Controller
 
     private function read_showcase($user_type, $data)
     {
-        $data['showcase'] = $this->showcase_model->get();
+        $data['showcases'] = $this->showcase_model->get();
         $this->view($user_type . '/Gallery', $data);
     }
 
@@ -84,13 +89,31 @@ class Showcase extends Controller
     {
         $data = ['error' => []];
         $data['title'] = isset($raw_data['title']) ? trim($raw_data['title']) : '';
-        $data['image_url'] = image_upload();
 
         if (!$data['title']) {
             $data['error'][] = 'Title must not be empty!';
+        } else {
+            $data['image_url'] = image_upload();
+            if (!$data['image_url']) {
+                $data['error'][] = 'Image must be JPG, GIF, or PNG!';
+            }
         }
-        if (!$data['image_url']) {
-            $data['error'][] = 'Image must be JPG, GIF, or PNG!';
+        return $data;
+    }
+
+    private function validate_update($raw_data)
+    {
+        $data = ['error' => []];
+        $data['title'] = isset($raw_data['title']) ? trim($raw_data['title']) : '';
+        $data['is_image_set'] = boolval($_FILES['picture']['name']);
+
+        if (!$data['title']) {
+            $data['error'][] = 'Title must not be empty!';
+        } else if ($data['is_image_set']) {
+            $data['image_url'] = image_upload();
+            if (!$data['image_url']) {
+                $data['error'][] = 'Image must be JPG, GIF, or PNG!';
+            }
         }
 
         return $data;
@@ -98,6 +121,6 @@ class Showcase extends Controller
 
     private function go_showcase_main()
     {
-        header('Location: ' . URLROOT . '/showcase/admin_showcase');
+        header('Location: ' . URLROOT . '/showcase/admin_showcases');
     }
 }

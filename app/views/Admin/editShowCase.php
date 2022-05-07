@@ -33,9 +33,9 @@
 
         <div style="margin-top: 50px;">
 
-            <form action='' method='post' enctype="multipart/form-data">
+            <form action='<?= URLROOT ?>/showcase/update_showcase/<?= $data['showcase']->id ?>' method='post' enctype="multipart/form-data">
                 
-                <img id="preview" class="img" src="Example.PNG">
+                <img id="preview" class="img" src="<?= URLROOT ?>/public/img/<?= $data['showcase']->image_url ?>">
 
                 <div class="mb-5">
                     <div class="mb-4">
@@ -44,7 +44,7 @@
                     </div>
                     <div>
                         <label for="showcaseTitle">Title</label>
-                        <input id="showcaseTitle" class="form-control" name = "title" type="text" placeholder="Title" aria-label="titleLabel">
+                        <input id="showcaseTitle" class="form-control" name = "title" type="text" placeholder="Title" aria-label="titleLabel" value="<?= $data['showcase']->title ?>">
                     </div>
                 </div>
                 
@@ -62,7 +62,7 @@
                 </script>
 
                 <div style="height: 40px;">
-                    <a href="AdminGallery.html" type="button" class="btn btn-secondary" style="
+                    <a href="<?= URLROOT ?>/showcase/admin_showcases" type="button" class="btn btn-secondary" style="
                         float: left;
                         width: 150px;
                         height: 40px;
