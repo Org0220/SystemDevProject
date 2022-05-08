@@ -55,11 +55,11 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/SystemDevProject/Appointments/admin_appointments"
+                        <a class="nav-link" href="/SystemDevProject/Appointment/admin_appointments"
                             style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/SystemDevProject/Appointments/admin_appointments"
+                        <a class="nav-link" href="/SystemDevProject/Appointment/admin_appointments"
                             style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Appointments</a>
                     </li>
 

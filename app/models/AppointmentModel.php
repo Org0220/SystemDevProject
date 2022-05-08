@@ -9,19 +9,40 @@
             return $this->db->getResultSet();
         }
 
-        public function getAppointment($user_id){
-            $this->db->query("SELECT * FROM appointment WHERE ID = :user_id");
-            $this->db->bind(':user_id',$user_id);
+        public function getAppointment($id){
+            $this->db->query("SELECT * FROM appointment WHERE id = :id");
+            $this->db->bind(':id',$id);
             return $this->db->getSingle();
         }
 
-        
+        public function getAppointmentWithClient(){
+            $this->db->query("SELECT appointment.id, appointment.date, appointment.time, client.name, client.email
+            FROM appointment
+            INNER JOIN client ON client.id= appointment.client_id ");
+            return $this->db->getResultSet();
+        }
 
         public function getAppointmentByDate($date){
             $this->db->query("SELECT appointment.id, appointment.date, appointment.time, service.duration
             FROM appointment
             INNER JOIN service ON service.id= appointment.service_id WHERE date = :date");
             $this->db->bind(':date',$date);
+            return $this->db->getResultSet();
+        }
+
+        public function getAppointmentWithClientByDate($date){
+            $this->db->query("SELECT appointment.id, appointment.date, appointment.time, client.name, client.email
+            FROM appointment
+            INNER JOIN client ON client.id= appointment.client_id WHERE date = :date");
+            $this->db->bind(':date',$date);
+            return $this->db->getResultSet();
+        }
+
+        public function getAppointmentByName($name){
+            $this->db->query("SELECT appointment.id, appointment.date, appointment.time, client.name, client.email
+            FROM appointment
+            INNER JOIN client ON client.id= appointment.client_id WHERE client.name = :name");
+            $this->db->bind(':name',$name);
             return $this->db->getResultSet();
         }
 
@@ -43,11 +64,9 @@
         }
 
         public function update($data){
-            $this->db->query("UPDATE appointment SET date=:date, time=:time, client_id=:client_id, service_id=:service_id WHERE id=:id");
+            $this->db->query("UPDATE appointment SET date=:date, time=:time WHERE id=:id");
             $this->db->bind(':date', $data['date']);
             $this->db->bind(':time', $data['time']);
-            $this->db->bind(':client_id', $data['client_id']);
-            $this->db->bind(':service_id',$data['service_id']);
             $this->db->bind(':id',$data['id']);
             if($this->db->execute()){
                 return true;
