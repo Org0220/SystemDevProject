@@ -10,6 +10,7 @@ class Admin extends Controller
         $this->NewsModel = $this->model('NewsModel');
         $this->ShowCaseModel = $this->model('ShowCaseModel');
         $this->ShampooModel = $this->model('ShampooModel');
+        $this->db_dump = $this->model('DbDump');
     }
     // All the functions in this class should start with if (is_admin_logged_in())
     /*------------------------------------------------------------------------------------------------------------------------*/
@@ -18,7 +19,18 @@ class Admin extends Controller
         if (!is_admin_logged_in()) {
             header('Location: ' . URLROOT);
         } else {
-            $this->view('Admin/DatabasePreview');
+            $table_names = $this->db_dump->get_tables();
+            $data = [];
+            foreach ($table_names as $table) {
+                $table_name = $table->Tables_in_quedescils;
+                $data[$table_name] = [];
+                $data[$table_name]['table_columns'] = $this->db_dump->get_table_column_names($table_name);
+                $data[$table_name]['table_records'] = $this->db_dump->get_table_records($table_name);
+            }
+            // echo '<pre>';
+            // var_dump($data);
+            // echo '</pre>';
+            $this->view('Admin/DatabasePreview', $data);
         }
     }
     public function addShampoo()

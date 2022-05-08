@@ -1,4 +1,4 @@
-
+</body>
 <footer style="position:sticky; margin-top:70px;">
     <div class="color-bar" style="
     width: 100%;
@@ -7,6 +7,7 @@
     border: 1px solid #707070;
     opacity: 1;">
     </div>
+    <script src="<?= URLROOT ?>/public/javascript/main.js"></script>
 </footer>
 
 </html>

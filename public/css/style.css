@@ -1,0 +1,110 @@
+.dbPreviewPrinterFriendly {
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.dbPreviewTableHead {
+  background-color: #a7c7e7;
+}
+
+.dbPreviewTableHead th:first-of-type {
+  width: 12%;
+}
+
+.dbPreviewTableBody > tr:nth-child(odd) {
+  background-color: #fbffe2;
+}
+
+.dbPreviewTableBody > tr > td:first-of-type {
+  font-weight: bold;
+}
+
+.dbPreviewTitle {
+  font: normal normal normal 50px/59px "Lucida Fax";
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+
+.defaultDbPreview {
+  font: normal normal normal 40px/47px "Lucida Fax";
+  margin-top: 50px;
+}
+
+.dbPreviewTableMargin {
+  margin-bottom: 115px;
+}
+
+.dbPreviewTableCaption {
+  caption-side: top;
+  border: none;
+}
+
+#dbPreviewTablePrintButton {
+  float: right;
+  width: 100px;
+  height: 40px;
+  background: #d7e7e4;
+  border: 1px solid #707070;
+  border-radius: 12px;
+  color: black;
+  font-size: 13px;
+}
+
+.noDisplay {
+  display: none;
+}
+
+@media print {
+  .dbPreviewTableHead {
+    background-color: #a7c7e7;
+  }
+
+  .dbPreviewTableHeaderId {
+    width: 12%;
+  }
+
+  .dbPreviewTableBody > tr:nth-child(odd) {
+    background-color: #fbffe2;
+  }
+
+  .dbPreviewTableBody > tr > td:first-of-type {
+    font-weight: bold;
+  }
+
+  .dbPreviewTitle {
+    font: normal normal normal 50px/59px "Lucida Fax";
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+  }
+
+  .defaultDbPreview {
+    font: normal normal normal 40px/47px "Lucida Fax";
+    margin-top: 50px;
+  }
+
+  .dbPreviewTableMargin {
+    margin-bottom: 115px;
+  }
+
+  .dbPreviewTableCaption {
+    caption-side: top;
+    border: none;
+  }
+
+  #dbPreviewTablePrintButton {
+    float: right;
+    width: 100px;
+    height: 40px;
+    background: #d7e7e4;
+    border: 1px solid #707070;
+    border-radius: 12px;
+    color: black;
+    font-size: 13px;
+  }
+
+  .noDisplay {
+    display: none;
+  }
+}
