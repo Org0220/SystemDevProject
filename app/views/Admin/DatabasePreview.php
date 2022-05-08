@@ -41,12 +41,14 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                <div>
-                    <button class="btn" id="dbPreviewTablePrintButton">
-                        <span class="noDisplay"><?= $table_name ?></span>
-                        Print Table
-                    </button>
-                </div>
+                <?php if (!empty($table_data['table_records'])) : ?>
+                    <div>
+                        <button class="btn" id="dbPreviewTablePrintButton">
+                            <span class="noDisplay"><?= $table_name ?></span>
+                            Print Table
+                        </button>
+                    </div>
+                <?php endif; ?>
             </div>
         <?php endforeach; ?>
     </div>

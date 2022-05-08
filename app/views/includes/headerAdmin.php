@@ -90,7 +90,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/SystemDevProejct/Admin/Database"
+                        <a class="nav-link" href="/SystemDevProject/Admin/Database"
                             style="text-align: center; width: 115px; font: 20px Microsoft Yi Baiti;">Database</a>
                     </li>
                 </ul>
