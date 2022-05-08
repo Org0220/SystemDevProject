@@ -26,16 +26,18 @@
                     <tbody class="dbPreviewTableBody">
                         <!-- Looping through an array of table record objects -->
                         <?php foreach ($table_data['table_records'] as $table_record) : ?>
-                            <!-- Looping through key-value pairs of each table record object  -->
-                            <?php foreach ((array) $table_record as $column_name => $column_value) : ?>
-                                <?php if ($column_name == 'id') : ?>
-                                    <td class="text-center"><?= str_pad($column_value, 6, '0', STR_PAD_LEFT) ?></td>
-                                <?php elseif ($column_name == 'image_url') : ?>
-                                    <td class="text-center"><a href="<?= URLROOT ?>/public/img/<?= $column_value ?>" target="_blank">Image Link</a></td>
-                                <?php elseif ($column_name != 'pass_hash') : ?>
-                                    <td class="text-center"><?= $column_value ?></td>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
+                            <tr>
+                                <!-- Looping through key-value pairs of each table record object  -->
+                                <?php foreach ((array) $table_record as $column_name => $column_value) : ?>
+                                    <?php if ($column_name == 'id') : ?>
+                                        <td class="text-center"><?= str_pad($column_value, 6, '0', STR_PAD_LEFT) ?></td>
+                                    <?php elseif ($column_name == 'image_url' || $column_name == 'imgURL') : ?>
+                                        <td class="text-center"><a href="<?= URLROOT ?>/public/img/<?= $column_value ?>" target="_blank">Image Link</a></td>
+                                    <?php elseif ($column_name != 'pass_hash') : ?>
+                                        <td class="text-center"><?= $column_value ?></td>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
