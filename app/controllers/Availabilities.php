@@ -94,7 +94,7 @@ class Availabilities extends Controller
         $data['start'] = isset($raw_data['start']) ? $raw_data['start'] : '';
         $data['end'] = isset($raw_data['end']) ? $raw_data['end'] : '';
 
-        if (!$data['day']) {
+        if (!$data['day'] && !is_int($data['day'])) {
             $data['error'][] = 'Day must be a day of the week!';
         }
         if (preg_match($time_regex, $data['start']) != 1) {
