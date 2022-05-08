@@ -47,11 +47,13 @@
         }
 
         public function create($data){
-            $this->db->query("INSERT INTO appointment (date, time, client_id, service_id) values (:date, :time, :client_id, :service_id)");
+            $this->db->query("INSERT INTO appointment (date, time, client_id, service_id, is_colored, is_combo) values (:date, :time, :client_id, :service_id, :is_colored, :is_combo)");
             $this->db->bind(':date', $data['date']);
             $this->db->bind(':time', $data['time']);
             $this->db->bind(':client_id', $data['client_id']);
             $this->db->bind(':service_id',$data['service_id']);
+            $this->db->bind(':is_colored', $data['is_colored']);
+            $this->db->bind(':is_combo', $data['is_combo']);
             
 
             if($this->db->execute()){

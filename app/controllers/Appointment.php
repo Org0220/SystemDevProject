@@ -1,6 +1,12 @@
 <?php
 
     class Appointment extends Controller{
+    
+        public static $MONTH = [
+            'January', 'February', 'March', 'April',
+            'May', 'June', 'July', 'August',
+            'September', 'October', 'November', 'December'
+        ];
 
         public function __construct()
         {
@@ -38,7 +44,11 @@
             $this->read_appointment('User/hours',  $data);
         }
 
-
+        public function clear_data()
+        {
+            $this->clear_appointment_session();
+            header('Location: ' . URLROOT . '/appointment');
+        }
         
         public function admin_appointments()
         {
@@ -60,28 +70,17 @@
             }
         }
     
-        // public function create_appointment()
-        // {
-        //     if (!is_admin_logged_in()) {
-        //         header('Location: ' . URLROOT);
-        //     } else if (!isset($_POST['Create Appointment'])) {
-        //         header('Location: ' . URLROOT . '/Appointment/create_appointment');
-        //     } else {
-        //         $data = $this->validate_appointment($_POST);
-                
-        //         if (!empty($data['error'])) {
-        //             $this->read_appointment('Admin/addAppointment', $data);
-        //         } else {
-        //             $isSucc = $this->ServiceModel->create($data);
-    
-        //             if ($isSucc) {
-        //                 $this->read_appointment('Admin/Appointment', ['msg' => 'Appointment successfully created!']);
-        //             } else {
-        //                 $this->read_appointment('Admin/addAppointment', ['error' => ['Error creating news!']]);
-        //             }
-        //         }
-        //     }
-        // }
+        public function create_appointment()
+        {
+            if ($this->is_appointment_session_valid()) {
+                $data = $this->get_appointment_session_vars();
+                $this->AppointmentModel->create($data);
+                $this->clear_appointment_session();
+                $this->view('User/bookingSuccess', $data);
+            } else {
+                header('Location: ' . URLROOT . '/appointment');
+            }
+        }
     
         public function update_appointment($appointment_id)
         {
@@ -166,5 +165,50 @@
             $data['appointments'] = $this->AppointmentModel->getAppointmentWithClient();
             $this->view($view, [$prop => $message, 'appointments' => $this->AppointmentModel->getAppointmentWithClient()]);
         }
+    
+        private function clear_appointment_session()
+        {
+            unset($_SESSION['date']);
+            unset($_SESSION['time']);
+            unset($_SESSION['appointment_id']);
+            unset($_SESSION['is_colored']);
+            unset($_SESSION['is_combo']);
+            unset($_SESSION['weekDay']);
+            unset($_SESSION['service_name']);
+            unset($_SESSION['service_price']);
+            unset($_SESSION['service_duration']);
+        }
+
+        private function is_appointment_session_valid()
+        {
+            return isset($_SESSION['date']) && isset($_SESSION['time']) && isset($_SESSION['client_id'])
+            && isset($_SESSION['appointment_id']) && isset($_SESSION['is_colored']) && isset($_SESSION['is_combo']);
+        }
+
+        private function get_appointment_session_vars()
+        {
+            $data = [];
+            $data['date'] = $_SESSION['date'];
+            $data['time'] = $_SESSION['time'];
+            $data['client_id'] = $_SESSION['client_id'];
+            $data['service_id'] = $_SESSION['appointment_id'];
+            $data['is_colored'] = $_SESSION['is_colored'];
+            $data['is_combo'] = $_SESSION['is_combo'];
+            $data['week_day'] = Appointment::$MONTH[intval($_SESSION['weekDay'])];
+            $data['proper_date'] = $this->convert_date_to_readable_date($data['date']);
+            $data['service_name'] = $_SESSION['service_name'];
+            $data['service_price'] = $_SESSION['service_price'];
+            $data['service_duration'] = $_SESSION['service_duration'];
+
+            return $data;
+        }
+
+        private function convert_date_to_readable_date($date_string)
+        {
+            $date_parts = explode('/', $date_string);
+            $date_parts[0] = str_pad($date_parts[0], 2, '0', STR_PAD_LEFT);
+            $date_parts[1] = Appointment::$MONTH[intval($date_parts[1]) - 1];
+
+            return join('/', $date_parts);
+        }
     }
-?>

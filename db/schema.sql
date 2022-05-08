@@ -72,6 +72,8 @@ CREATE TABLE `appointment` (
   `time` text NOT NULL,
   `client_id` int(11) NOT NULL,
   `service_id` int(11) NOT NULL,
+  `is_colored` tinyint(1) NOT NULL,
+  `is_combo` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `appointment_ibfk_1` (`client_id`),
   KEY `service_id` (`service_id`),
