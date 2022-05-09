@@ -31,6 +31,10 @@
                         <label for="productPrice">Price</label>
                         <input id="productPrice" name = "price"class="form-control" type="number" step="0.01" placeholder="00.00" aria-label="priceLabel">
                     </div>
+                    <div class="mb-4">
+                        <label for="productImage">Price</label>
+                        <input id="productImage" name = "picture" class="form-control" type="file"  placeholder="00.00" aria-label="priceLabel">
+                    </div>
                     
                 </div>
                 
