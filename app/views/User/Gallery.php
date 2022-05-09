@@ -1,35 +1,8 @@
 <?php require APPROOT . '/views/includes/headerUser.php';
 ?>
 
-<style>
-    .img {
-        position: relative;
-        background-image: url("Example.PNG");
-        background-size: 100%;
-        background-repeat: no-repeat;
-        width: 230px;
-        height: 230px;
-        margin-left: auto;
-        margin-right: auto;
-        border-radius: 14px;
-        display: block;
-    }
 
-    .imgModal {
-        position: relative;
-        background-image: url("Example.PNG");
-        background-size: 100%;
-        background-repeat: no-repeat;
-        width: 470px;
-        height: 470px;
-        margin-left: auto;
-        margin-right: auto;
-        border-radius: 14px;
-        display: block;
-    }
-</style>
-
-<div class="container" style="width:100%; height:auto; margin-top: 5%;">
+<div class="container" style="width:100%; height:auto; margin-top: 5%; min-height: 100%;">
     <h4 class="card-title" style=" 
         padding-bottom: 50px;
         margin:auto;  
@@ -44,7 +17,18 @@
 
         <?php foreach ($data['showcases'] as $showcase) : ?>
             <div class="col" style="margin-top: 50px;">
-                <div class="img">
+                <div class="img" style="
+                    position: relative;
+                    background-image: url('<?= URLROOT ?>/public/img/<?= $showcase->image_url ?>');
+                    background-size: 100%;
+                    background-repeat: no-repeat;
+                    width: 230px;
+                    height: 230px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    border-radius: 14px;
+                    display: block;
+                ">
                     <div class="title" style="
                     position:absolute;
                     width:100%;
@@ -75,7 +59,18 @@
 
                                 <div class="modal-body">
 
-                                    <div class="imgModal">
+                                    <div class="imgModal" style="
+                                            position: relative;
+                                            background-image: url('<?= URLROOT ?>/public/img/<?= $showcase->image_url ?>');
+                                            background-size: 100%;
+                                            background-repeat: no-repeat;
+                                            width: 470px;
+                                            height: 470px;
+                                            margin-left: auto;
+                                            margin-right: auto;
+                                            border-radius: 14px;
+                                            display: block;
+                                    ">
                                         <div class="title" style="
                                          position:absolute;
                                         width:100%;

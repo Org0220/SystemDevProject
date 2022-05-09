@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/includes/headerAdmin.php';
 ?>
-<div class="container" style=" margin: auto; margin-top: 5%; height: auto; ">
+<div class="container" style=" margin: auto; margin-top: 5%; height: auto;  min-height: 100%;">
     <!-- add code here -->
 
     <!-- title -->

@@ -2,7 +2,7 @@
 ?>
 
 
-<div class="container" style="margin-top: 5%; height: auto;">
+<div class="container" style="margin-top: 5%; height: auto; min-height: 100%;">
         <h4 class="card-title" style=" margin:auto;  text-align: center;
         font: normal normal normal 40px/47px Lucida Fax;
         letter-spacing: 0px;

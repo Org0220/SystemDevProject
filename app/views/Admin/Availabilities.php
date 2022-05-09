@@ -5,7 +5,9 @@
     width:100%;
     height: 100%; 
     text-align: center;
-    margin-top: 50px;">
+    margin-top: 50px;
+    min-height: 100%;">
+    
     <h1 style="font: normal normal normal 40px/47px Lucida Fax;">Availabilities</h1>
 
     <div class="messages">

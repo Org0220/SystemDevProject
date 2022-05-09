@@ -24,13 +24,12 @@
                     <div class="first-half" style="width: 30%;   float:left;">
                         <img src="<?php echo URLROOT.'/public/img/'.$service->imgURL?>" style="
                         border-radius: 360px; 
-                        opacity: 1; 
-                        width:50%; 
-                        height: 100%;
-                        margin-left:auto; 
-                        margin-right:auto; 
-                        display:block;
-                        top:5%;
+                         opacity: 1; 
+                         width:50%; 
+                         margin-left:auto; 
+                         margin-right:auto; 
+                         display:block;
+                         top:5%;
                         ">
                     </div>
                     <!-- div for info -->

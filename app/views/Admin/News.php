@@ -11,7 +11,7 @@
         font: normal normal normal 16px/20px Lucida Fax;
     }
 </style>
-<div class="container" style=" margin: auto; margin-top: 5%; height: auto; ">
+<div class="container" style=" margin: auto; margin-top: 5%; height: auto;  min-height: 100%;">
     <!-- add code here -->
 
     <!-- title -->

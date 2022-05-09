@@ -14,7 +14,7 @@
 
     .img {
         position: relative;
-        background-image: url("Example.PNG");
+        background-image: url("627864b9265a7.jpg");
         background-size: 100%;
         background-repeat: no-repeat;
         width: 230px;
@@ -38,7 +38,7 @@
 
     .imgModal {
         position: relative;
-        background-image: url("Example.PNG");
+        background-image: url("627864b9265a7.jpg");
         background-size: 100%;
         background-repeat: no-repeat;
         width: 470px;
@@ -49,7 +49,7 @@
         display: block;
     }
 </style>
-<div class="container" style=" margin: auto; margin-top: 5%; height: auto; ">
+<div class="container" style=" margin: auto; margin-top: 5%; height: auto; min-height: 100%; ">
     <!-- add code here -->
 
     <!-- title -->
@@ -127,7 +127,18 @@
         <?php foreach ($data['showcases'] as $showcase) : ?>
             <!-- gallery entry -->
             <div class="col" style="margin-top: 50px;">
-                <div class="img">
+                <div class="img" style="
+                    position: relative;
+                    background-image: url('<?= URLROOT ?>/public/img/<?= $showcase->image_url ?>');
+                    background-size: 100%;
+                    background-repeat: no-repeat;
+                    width: 230px;
+                    height: 230px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    border-radius: 14px;
+                    display: block;
+                ">
                     <div class="title" style="
                     position: absolute;
                     width: 100%;
@@ -156,7 +167,18 @@
 
                                 <div class="modal-body">
 
-                                    <div class="imgModal">
+                                    <div class="imgModal" style="
+                                            position: relative;
+                                            background-image: url('<?= URLROOT ?>/public/img/<?= $showcase->image_url ?>');
+                                            background-size: 100%;
+                                            background-repeat: no-repeat;
+                                            width: 470px;
+                                            height: 470px;
+                                            margin-left: auto;
+                                            margin-right: auto;
+                                            border-radius: 14px;
+                                            display: block;
+                                    ">
                                         <div class="title" style="
                                         position:absolute;
                                         width:100%;

@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/includes/headerUser.php';
 ?>
-<div class="container" style=" margin: auto; margin-top: 5%; height: auto; text-align: center;">
+<div class="container" style=" margin: auto; margin-top: 5%; height: auto; text-align: center; min-height: 100%;">
     <h4 class="card-title" style=" 
         padding-bottom: 10px;
         font: normal normal normal 40px/47px Lucida Fax;
