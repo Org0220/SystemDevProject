@@ -15,7 +15,7 @@ class AvailabilitiesModel extends Model
 
     public function getByDate($day)
     {
-        $this->query('SELECT * FROM availabilities WHERE day = :day');
+        $this->query('SELECT * FROM availabilities WHERE day = :day ORDER BY start');
         $this->bind('day', $day);
         return $this->getResultSet();
     }

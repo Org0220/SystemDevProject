@@ -27,8 +27,14 @@
 
         $parts = explode(':', $appointment->time);
 
-        $hour = intval($parts[0], 10);
-        $minute = intval($parts[1], 10) + $appointment->duration;
+        $duratoin = $appointment->duration;
+        $hourDuration = 0;
+        while ($duratoin > 60) {
+            $duratoin -= 60;
+            $hourDuration++;
+        }
+        $hour = intval($parts[0], 10) + $hourDuration;
+        $minute = intval($parts[1], 10) + $duratoin;
         if ($minute >= 60) {
             $minute -= 60;
             $hour++;
@@ -46,9 +52,14 @@
         array_push($apStartHours, $appointment->time);
 
         $parts = explode(':', $appointment->time);
-
-        $hour = intval($parts[0], 10);
-        $minute = intval($parts[1], 10) + $appointment->duration;
+        $duratoin = $appointment->duration;
+        $hourDuration = 0;
+        while ($duratoin > 60) {
+            $duratoin -= 60;
+            $hourDuration++;
+        }
+        $hour = intval($parts[0], 10) + $hourDuration;
+        $minute = intval($parts[1], 10) + $duratoin;
         if ($minute >= 60) {
             $minute -= 60;
             $hour++;
@@ -62,34 +73,40 @@
         array_push($apEndHours,  $endTime);
     }
 
-    for ($i = intdiv(900, $data['duration']); $i > 0; $i--) {
-
-        $startMinute = $data['minute'];
-        $startHour = $data['hour'];
-        $endMinute = $data['minute'] + $data['duration'];
-        $endHour = $data['hour'];
-        if ($endMinute >= 60) {
-            $endMinute = $endMinute - 60;
-            $endHour = $endHour + 1;
-        }
-        $data['hour'] = $endHour;
-        $data['minute'] = floor($endMinute);
-
-        if ($startMinute < 10) {
-            $time =  $startHour . ":0" . $startMinute;
-        } else {
-            $time =  $startHour . ":" . $startMinute;
-        }
+   
 
 
 
-        foreach ($data['availbilities'] as $availability) {
-            $isAvailable = false; //
+    foreach ($data['availbilities'] as $availability) {
+        $isAvailable = false; 
+        $parts = explode(':', $availability->start);
+        $data['minute'] = $parts[1];
+        $data['hour'] = $parts[0];
+
+        for ($i = 0; $i < timeMinus($availability->end, $availability->start); $i+=$data['duration']) {
+            $startMinute = $data['minute'];
+            $duration = $data['duration'];
+            $startHour = $data['hour'];
+            $hourDuration = 0;
+            while($duration >= 60) {
+                $duration -= 60;
+                $hourDuration++;
+            }
+            $endMinute = $data['minute'] + $duration;
+            $endHour = $data['hour']  + $hourDuration;
+            if ($endMinute >= 60) {
+                $endMinute = $endMinute - 60;
+                $endHour = $endHour + 1;
+            }
+            $data['hour'] = $endHour;
+            $data['minute'] = floor($endMinute);
+                $time =  $startHour . ":" . $startMinute;
+            
+
             if (isTimeBigger($startHour . ':' . $startMinute, $availability->start) && !isTimeBigger($time, $availability->end)) {
                 $isAvailable = true;
             }
             if ($isAvailable) {
-                
                 for ($y = 0; $y < count($apStartHours); $y++) {
                     if (isTimeBigger($startHour . ':' . $startMinute, $apStartHours[$y]) && !isTimeBigger($time, $apEndHours[$y])) {
                         $isAvailable = false;
@@ -97,15 +114,36 @@
                             break;
                     }
                 }
-                
             }
             if ($isAvailable) {
                 require APPROOT . '/views/Divs/HourDiv.php';
             }
-            
         }
+    }
 
-        
+
+
+    /**
+     * Substracts time2 from time1
+     * @param string $time1
+     * @param string $time2
+     * @return difference in minutes
+     */
+    function timeMinus($time1, $time2)
+    {
+        $parts1 = explode(':', $time1);
+        $parts2 = explode(':', $time2);
+        $hour1 = intval($parts1[0], 10);
+        $minute1 = intval($parts1[1], 10);
+        $hour2 = intval($parts2[0], 10);
+        $minute2 = intval($parts2[1], 10);
+        $minute = $minute1 - $minute2;
+        $hour = $hour1 - $hour2;
+        if ($minute < 0) {
+            $minute += 60;
+            $hour--;
+        }
+        return $hour * 60 + $minute;
     }
 
     // returns true if the $time1 > $time2 and false otherwise
