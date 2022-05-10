@@ -39,7 +39,7 @@
             <div class="col-sm-8"><br>
                 <input type="text" name="first_name" class="form-control" id="inputFirstName" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="First Name:"><br>
                 <input type="text" name="last_name" class="form-control" id="inputLastName" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="Last Name:"><br>
-                <input type="text" name="phone_number" class="form-control" id="inputPhone" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="PPhone Number:"><br>
+                <input type="text" name="phone_number" class="form-control" id="inputPhone" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="Phone Number:"><br>
                 <input type="email" name="email" class="form-control" id="inputEmail" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="Email"><br>
                 <input type="password" name="password" class="form-control" id="inputPassword" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="Password:"><br>
                 <input type="password" name="verify_password" class="form-control" id="inputConfirmPassword" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="Confirm Password:">
