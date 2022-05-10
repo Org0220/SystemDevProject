@@ -39,7 +39,7 @@
                 </div>
                 
                 <div style="height: 40px;">
-                    <a href="http://localhost/SystemDevProject/Admin/addShampoo" type="button" class="btn btn-secondary" style="
+                    <a href="<?= URLROOT ?>/shampoos/admin_shampoos" type="button" class="btn btn-secondary" style="
                         float: left;
                         width: 150px;
                         height: 40px;

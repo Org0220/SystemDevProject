@@ -48,7 +48,7 @@
                 </div>
                 
                 <div style="height: 40px;">
-                    <a href="AdminProducts.html" type="button" class="btn btn-secondary"  style="
+                    <a href="<?= URLROOT ?>/services/admin_services" type="button" class="btn btn-secondary"  style="
                         float: left;
                         width: 150px;
                         height: 40px;
@@ -56,14 +56,6 @@
                         border: 1px solid #707070;
                         color: black;
                     ">Cancel</a>
-                    <button type="submit" name="Create_Service" class="btn btn-primary" style="
-                        float: right;
-                        width: 150px;
-                        height: 40px;
-                        background: #A7C7E7;
-                        border: 1px solid #707070;
-                        color: black;
-                    ">Add Service</button>
                     <button type="submit" name="Update_Service" class="btn btn-primary"  style="
                         float: right;
                         width: 150px;

@@ -102,13 +102,13 @@ class Login extends Controller
         unset($_SESSION['client_id']);
         unset($_SESSION['client_name']);
         session_destroy();
-        echo '<meta http-equiv="Refresh" content="1; url=/SystemDevProject/Login/">';
+        echo '<meta http-equiv="Refresh" content="1; url=/SystemDevProject">';
     }
 
     public function adminLogout(){
         unset($_SESSION['admin']);
         session_destroy();
-        echo '<meta http-equiv="Refresh" content="1; url=/SystemDevProject/Login/">';
+        echo '<meta http-equiv="Refresh" content="1; url=/SystemDevProject">';
     }
 
 

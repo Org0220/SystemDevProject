@@ -38,7 +38,7 @@
                 </div>
                 
                 <div style="height: 40px;">
-                    <a href="http://localhost/SystemDevProject/Admin/Shampoos type="button" class="btn btn-secondary" style="
+                    <a href="<?= URLROOT ?>/shampoos/admin_shampoos" class="btn btn-secondary" style="
                         float: left;
                         width: 150px;
                         height: 40px;

@@ -28,7 +28,6 @@
             if (!is_admin_logged_in()) {
                 header('Location: ' . URLROOT);
             } else if (!isset($_POST['Create_Shampoo'])) {
-                echo 'Button';
                 $this->view('Admin/addShampoo');
             } else {
                 $data = $this->validate_shampoo($_POST);

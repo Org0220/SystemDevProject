@@ -35,11 +35,11 @@ $dt = new DateTime("now", new DateTimeZone("America/New_York"));
             <form action=' <?= URLROOT ?>/Appointment/update_appointment/<?= $data['appointment']->id ?>' method='post'>
                 <div class="mb-5">
                     <div class="mb-4">
-                        <label for="timeInput">Title</label>
+                        <label for="timeInput">Time</label>
                         <input id = "timeInput" name = "time" class="form-control" type="time" value = "<?php echo $data['appointment']->time ?>" min = "<?php echo $dt->format("h:i")?>" max = "23:59:99" />
                     </div>
                     <div class="mb-4">  
-                        <label for="dateInput" class="form-label">Content</label>
+                        <label for="dateInput" class="form-label">Date</label>
                         <input id = "dateInput" name = "date" class="form-control" type="date"  value="<?php 
                         $parts = explode('/', $data['appointment']->date);
                         if(intval($parts[0], 10) < 10) 
