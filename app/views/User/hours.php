@@ -80,8 +80,8 @@
     foreach ($data['availbilities'] as $availability) {
         $isAvailable = false; 
         $parts = explode(':', $availability->start);
-        $data['minute'] = $parts[1];
-        $data['hour'] = $parts[0];
+        $data['minute'] = intval($parts[1]);
+        $data['hour'] = intval($parts[0]);
 
         for ($i = 0; $i < timeMinus($availability->end, $availability->start); $i+=$data['duration']) {
             $startMinute = $data['minute'];
@@ -100,8 +100,14 @@
             }
             $data['hour'] = $endHour;
             $data['minute'] = floor($endMinute);
+            if($startMinute < 10) {
+                $startMinute = '0' . $startMinute;
+            }
+            if($startHour < 10) {
+                $startHour = '0' . $startHour;
+            }
                 $time =  $startHour . ":" . $startMinute;
-            
+           
 
             if (isTimeBigger($startHour . ':' . $startMinute, $availability->start) && !isTimeBigger($time, $availability->end)) {
                 $isAvailable = true;
