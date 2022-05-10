@@ -46,6 +46,7 @@ CREATE TABLE `service` (
   `price` double NOT NULL,
   `duration` text NOT NULL,
   `description` text NOT NULL,
+  `imgURL` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
