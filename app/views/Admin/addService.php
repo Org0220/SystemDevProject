@@ -72,7 +72,9 @@
                 if(isset($data['error'])) {
                     foreach($data['error'] as $error) {
                         echo '<div class="alert alert-danger" role="alert">';
-                        echo $error;}
+                        echo $error;
+                    
+                        echo '</div>';}
                 }
             ?>
         </div>

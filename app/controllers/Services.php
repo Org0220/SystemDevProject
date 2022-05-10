@@ -126,8 +126,8 @@
             if (!$data['price']) {
                 $data['error'][] = 'Price must not be empty and should be numeric!';
             }
-            if (!$data['duration']) {
-                $data['error'][] = 'Duration must not be empty and should be numeric!';
+            if ($data['duration'] > 360) {
+                $data['error'][] = 'Duration must not be greater than 4 hours or 360 minutes!';
             }
             if (!$data['description']) {
                 $data['error'][] = 'Description must not be empty!';

@@ -29,21 +29,19 @@ class Login extends Controller
                     if(password_verify($password,$hashed_pass)){
 
                         $this->createSession($user);
-                        $data = [
-                            'msg' => "Welcome, $user->email!",
-                        ];
-                        $this->view('User/index',$data);
+                        
+                        $this->view('User/index');
                     }
                     else{
                         $data = [
-                            'msg' => "Password incorrect! for $user->email",
+                            'error' => "Password incorrect! for $user->email",
                         ];
                         $this->view('Login/index',$data);
                     }
                 }
                 else{
                     $data = [
-                        'msg' => "User: ". $_POST['email'] ." does not exists",
+                        'error' => "User: ". $_POST['email'] ." does not exists",
                     ];
                     $this->view('Login/index',$data);
                 }
@@ -66,13 +64,11 @@ class Login extends Controller
                     'pass_hash' => password_hash($_POST['password'], PASSWORD_DEFAULT),
                     'name' => $_POST['first_name'] . " " . $_POST['last_name'],
                     'phone_number' => $_POST['phone_number'],
-                    'email_error' => '',
-                    'password_error' => '',
-                    'password_match_error' => '',
-                    'password_len_error' => '',
+                    
                     'msg' => ''
                 ];
-                if($this->validate_client($data)){
+                $data['error'] = $this->validate_client($data);
+                if(!$data['error']){
                     if($this->UserModel->create($data)){
                         echo '
                         <div class="text-center">
@@ -81,13 +77,13 @@ class Login extends Controller
                         </div>
                       </div>';
                         echo '<meta http-equiv="Refresh" content="2; url=/SystemDevProject/Login/">';
-                    }
-                } 
+                    } 
+                } else {
+                    $this->view('Login/Register',$data);
+                }
             }
             else{
-                $data = [
-                    'msg' => "User: ". $_POST['email'] ." already exists",
-                ];
+                $data ['error'][] = "User: ". $_POST['email'] ." already exists";
                 $this->view('Login/Register',$data);
             }
         }
@@ -120,16 +116,20 @@ class Login extends Controller
         $prev = '/\b[a-zA-Z0-9+_.-]{6,16}@[a-zA-Z0-9]{4,8}.([a-zA-Z]{2,5})\b/i';
 
         if (preg_match($prev, $data['email'])) {
-            $data['error'][] = 'Title must not be empty!';
+            $data['error'][] = 'email must be properly formated!';
         }
         if(strlen($data['pass']) < 6){
-            $data['password_len_error'] = 'Password can not be less than 6 characters';
+            $data['error'][] = 'Password can not be less than 6 characters';
         }
+        
         if($_POST['password'] != $data['pass_verify']){
-            $data['password_match_error'] = 'Password does not match';
+            $data['error'][] = 'Password does not match';
+        }
+        if(!is_numeric($data['phone_number']) && strlen($data['pass']) == 10) {
+            $data['error'][] = 'Phone number must only contain numbers';
         }
 
-        return $data;
+        return $data['error'];
     }
     
 }

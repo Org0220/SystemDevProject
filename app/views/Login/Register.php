@@ -23,7 +23,16 @@
 </head>
 
 <body background="<?php echo URLROOT.'/public/img/'?>Wallpaper.png" style= "background-repeat: no-repeat; background-size: cover;">
-
+<?php echo !isset($data['error']);?>
+<?php if (isset($data['error'])): ?>
+        <div class="errors">
+            <?php foreach($data['error'] as $error): ?>
+            <div class="alert alert-danger" role="alert">
+                <?= $error ?>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
     <br><br><br><br>
     <!-- Register title -->
     <section class="login">
@@ -39,7 +48,7 @@
             <div class="col-sm-8"><br>
                 <input type="text" name="first_name" class="form-control" id="inputFirstName" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="First Name:"><br>
                 <input type="text" name="last_name" class="form-control" id="inputLastName" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="Last Name:"><br>
-                <input type="text" name="phone_number" class="form-control" id="inputPhone" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="PPhone Number:"><br>
+                <input type="text" name="phone_number" class="form-control" id="inputPhone" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="Phone Number:"><br>
                 <input type="email" name="email" class="form-control" id="inputEmail" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="Email"><br>
                 <input type="password" name="password" class="form-control" id="inputPassword" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="Password:"><br>
                 <input type="password" name="verify_password" class="form-control" id="inputConfirmPassword" style="background: transparent; border-radius: 0px; border: 0px; border-bottom: 1px solid white; color: white;" placeholder="Confirm Password:">
@@ -54,7 +63,9 @@
                 <h6 style="color:#94749b;">Already registered? <a href="/SystemDevProject/" style="color:#94749b"><b> Login!</b></a></h6>
             </div>
         </div>
+        
     </form>
 </section>
+
 </body>
 </html>

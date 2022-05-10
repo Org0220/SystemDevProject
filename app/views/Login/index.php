@@ -53,7 +53,13 @@
 
     </form>
 </section>
-
+<?php if (isset($data['error'])): ?>
+        <div class="errors">
+            <div class="alert alert-danger" role="alert">
+                <?= $data['error'] ?>
+            </div>
+        </div>
+    <?php endif; ?>
 </body>
 
 </html>
