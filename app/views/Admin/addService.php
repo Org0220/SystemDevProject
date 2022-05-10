@@ -50,7 +50,7 @@
                 </div>
                 
                 <div style="height: 40px;">
-                    <a href="AdminProducts.html" type="button" class="btn btn-secondary" style="
+                    <a href="<?= URLROOT ?>/services/admin_services" type="button" class="btn btn-secondary" style="
                         float: left;
                         width: 150px;
                         height: 40px;

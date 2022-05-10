@@ -22,26 +22,34 @@
         }
 
         public function calendar($appointment_id) {
-            
-            $_SESSION['appointment_id'] = $appointment_id;
-            $this->view('User/calendar');
+            $this->clear_appointment_session();
+            if (isset($_SESSION['client_id'])) {
+                $_SESSION['appointment_id'] = $appointment_id;
+                $this->view('User/calendar');
+            } else {
+                header('Location: ' . URLROOT . '/login');
+            }
         }
 
         public function hours($day, $month, $year, $weekDay)
         {
-            $data = [
-                `endHour` => 22
-            ];
-            $_SESSION['date'] = $day . '/' . intval($month, 10) + 1 . '/' . $year;
-            $_SESSION['weekDay'] = $weekDay;
-            
-            $data['hour'] = 7;
-            $data['minute'] = 0;  
-            $data['duration'] = $this->ServiceModel->getService( $_SESSION['appointment_id'])->duration;
-            $data['availbilities'] = $this->AvailabilitiesModel->getByDate($_SESSION['weekDay']);
-            $data['appointments'] = $this->AppointmentModel->getAppointmentByDate($_SESSION['date']);
-            
-            $this->read_appointment('User/hours',  $data);
+            if (isset($_SESSION['client_id'])) {
+                $data = [
+                    `endHour` => 22
+                ];
+                $_SESSION['date'] = $day . '/' . intval($month, 10) + 1 . '/' . $year;
+                $_SESSION['weekDay'] = $weekDay;
+                
+                $data['hour'] = 7;
+                $data['minute'] = 0;  
+                $data['duration'] = $this->ServiceModel->getService( $_SESSION['appointment_id'])->duration;
+                $data['availbilities'] = $this->AvailabilitiesModel->getByDate($_SESSION['weekDay']);
+                $data['appointments'] = $this->AppointmentModel->getAppointmentByDate($_SESSION['date']);
+                
+                $this->read_appointment('User/hours',  $data);
+            } else {
+                header('Location: ' . URLROOT . '/login');
+            }
         }
 
         public function clear_data()

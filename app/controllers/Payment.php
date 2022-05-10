@@ -68,9 +68,9 @@ class Payment extends Controller
                     'price_data' => [
                         'currency' => 'cad',
                         'product_data' => [
-                            'name' => $_SESSION['service_name']
+                            'name' => $_SESSION['service_name'] . ' 25% Collateral'
                         ],
-                        'unit_amount' => $_SESSION['service_price'] * 100
+                        'unit_amount' => floor($_SESSION['service_price'] * 100 / 4)
                     ],
                     'quantity' => 1,
                 ]],
@@ -87,7 +87,7 @@ class Payment extends Controller
 
     public function checkout_cancel()
     {
-        $this->view('Checkout/checkoutCancel');
+        $this->view('User/checkoutCancel');
     }
 
     private function parse_values()
