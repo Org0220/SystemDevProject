@@ -7,7 +7,8 @@
     border: 1px solid #707070;
     opacity: 1;">
     </div>
-    <script src="<?= URLROOT ?>/public/javascript/main.js"></script>
 </footer>
+
+<script src="<?= URLROOT ?>/public/javascript/main.js"></script>
 
 </html>

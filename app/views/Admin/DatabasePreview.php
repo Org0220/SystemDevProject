@@ -24,6 +24,7 @@
                         </tr>
                     </thead>
                     <tbody class="dbPreviewTableBody">
+                        <?php if (!empty($table_data['table_records'])): ?>
                         <!-- Looping through an array of table record objects -->
                         <?php foreach ($table_data['table_records'] as $table_record) : ?>
                             <tr>
@@ -39,18 +40,28 @@
                                 <?php endforeach; ?>
                             </tr>
                         <?php endforeach; ?>
+                        <?php else : ?>
+                        <tr>
+                            <?php for ($i = 0; $i < count($table_data['table_columns']); $i++): ?>
+                                <td class="text-center">[EMPTY]</td>
+                            <?php endfor; ?>
+                        </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
-                <?php if (!empty($table_data['table_records'])) : ?>
-                    <div>
-                        <button class="btn" id="dbPreviewTablePrintButton">
-                            <span class="noDisplay"><?= $table_name ?></span>
-                            Print Table
-                        </button>
-                    </div>
-                <?php endif; ?>
             </div>
         <?php endforeach; ?>
+    </div>
+    <div class="noDisplay" style="text-align: center;">
+        <button class="btn" id="dbPreviewPrintButton" style=" 
+                width: 150px;
+                height: 40px;
+                background: #EF4848;
+                border: 1px solid #707070;
+                color: black;
+                ">
+            Print Summary
+        </button>
     </div>
 </div>
 
