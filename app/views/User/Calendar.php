@@ -66,7 +66,7 @@
         font: normal normal normal 50px/59px Lucida Fax;
         letter-spacing: 0px;
         color: #000000;
-        opacity: 1;">Home</h4>
+        opacity: 1;">Date</h4>
 
         <!-- Calendar -->
         <div style="height: 100px; width: auto; padding: 15px 0px; margin: auto;">
