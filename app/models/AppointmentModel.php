@@ -41,7 +41,7 @@
         public function getAppointmentByName($name){
             $this->db->query("SELECT appointment.id, appointment.date, appointment.time, client.name, client.email
             FROM appointment
-            INNER JOIN client ON client.id= appointment.client_id WHERE client.name = :name");
+            INNER JOIN client ON client.id= appointment.client_id WHERE client.name LIKE CONCAT('%', :name, '%')");
             $this->db->bind(':name',$name);
             return $this->db->getResultSet();
         }

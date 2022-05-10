@@ -40,7 +40,7 @@
                         <input id="servicePrice" name = "price"class="form-control" type="number" step="0.01" aria-label="priceLabel">
                     </div>
                     <div class="mb-4">
-                        <label for="servicePrice">Duration</label>
+                        <label for="servicePrice">Duration (* In minutes)</label>
                         <input id="duration" name = "duration"class="form-control" type="number" step="0.01" aria-label="priceLabel">
                     </div>
                     <div>
