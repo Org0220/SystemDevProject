@@ -30,14 +30,12 @@
         <div style="text-align: right; height: 40px;" class="mb-4">
             <a class="btn" href="/SystemDevProject/Shampoos/create_shampoo" style="
                 float: right;
-                width: 100px;
-                height: 40px;
-                background: #A7C7E7;
-                border: 1px solid #707070;
-                border-radius: 12px;
-                color: white;
-                font: normal normal normal 25px/26px Lucida Fax;
-                ">
+        width: 80px;
+        height: 40px;
+        background: #A7C7E7 0%;
+        border: 1px solid #ffffff;
+        color: rgb(255, 255, 255);
+        ">
             +
             </a>
         </div>

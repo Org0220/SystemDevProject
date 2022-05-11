@@ -5,10 +5,16 @@
     width:100%;
     height: 100%; 
     text-align: center;
-    margin-top: 50px;
+    margin-top: 5%;
     min-height: 100%;">
     
-    <h1 style="font: normal normal normal 40px/47px Lucida Fax;">Availabilities</h1>
+    <h4 style="
+        text-align: center;
+        font: normal normal normal 50px/59px Lucida Fax;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+        ">Availabilities</h4>
 
     <div class="messages">
         <?php if (isset($data['message'])) : ?>

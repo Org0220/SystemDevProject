@@ -16,12 +16,12 @@
 
     <!-- title -->
     <div class="container" style="margin-top: 5%; height: auto;">
-        <h4 class="card-title" style=" margin:auto;  text-align: center;
-            font: normal normal normal 40px/47px Lucida Fax;
-            letter-spacing: 0px;
-            color: #000000;
-            opacity: 1;">Newsletter
-        </h4><br>
+    <h4 style="
+        text-align: center;
+        font: normal normal normal 50px/59px Lucida Fax;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;">Newsletter</h4><br>
 
         <div class="messages">
             <?php if (isset($data['message'])) : ?>
