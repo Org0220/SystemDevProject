@@ -114,8 +114,7 @@ class Login extends Controller
     {
        
         $prev = '/\b[a-zA-Z0-9+_.-]{6,16}@[a-zA-Z0-9]{4,8}.([a-zA-Z]{2,5})\b/i';
-
-        if (preg_match($prev, $data['email'])) {
+        if (!preg_match($prev, $data['email'])) {
             $data['error'][] = 'email must be properly formated!';
         }
         if(strlen($data['pass']) < 6){
@@ -129,7 +128,7 @@ class Login extends Controller
             $data['error'][] = 'Phone number must only contain numbers';
         }
 
-        return $data['error'];
+        return isset($data['error']) ? $data['error'] : false;
     }
     
 }
